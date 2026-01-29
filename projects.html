@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Eylia Wahbeh</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="index.html" aria-label="Home">
+        <span class="brand__mark"></span>
+        <span class="brand__name">Eylia Wahbeh</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact" class="pill">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <h1 class="h1">Projects</h1>
+        <p>Each project has a full case study page.</p>
+      </div>
+
+      <div class="grid" style="grid-template-columns: repeat(2, minmax(0, 1fr)); gap:16px;">
+        <!-- Lumina -->
+        <article class="card">
+          <a class="card__link" href="projects/lumina.html">
+            <div class="card__media">
+              <div class="thumb thumb--hero"></div>
+            </div>
+            <div class="card__body">
+              <div class="card__top">
+                <h3>Lumina Challenge — Seat of Collaboration</h3>
+                <span class="chip">Experience</span>
+              </div>
+              <p class="card__desc">Collaboration becomes play, and light becomes the reward.</p>
+              <div class="card__foot"><span class="link">Open case study</span><span class="arrow">→</span></div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Rolo’no -->
+        <article class="card">
+          <a class="card__link" href="projects/rolono.html">
+            <div class="card__media">
+              <div class="thumb thumb--1"></div>
+            </div>
+            <div class="card__body">
+              <div class="card__top">
+                <h3>Rolo’no Apron</h3>
+                <span class="chip">Product</span>
+              </div>
+              <p class="card__desc">Heritage craft, modern utility, reduced to essentials.</p>
+              <div class="card__foot"><span class="link">Open case study</span><span class="arrow">→</span></div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Circular Economy -->
+        <article class="card">
+          <a class="card__link" href="projects/circular.html">
+            <div class="card__media">
+              <div class="thumb thumb--2"></div>
+            </div>
+            <div class="card__body">
+              <div class="card__top">
+                <h3>Circular Economy Concepts</h3>
+                <span class="chip">Circular Design</span>
+              </div>
+              <p class="card__desc">Park Light + Dolphin Torch concepts focused on repair, reuse, longevity.</p>
+              <div class="card__foot"><span class="link">Open case study</span><span class="arrow">→</span></div>
+            </div>
+          </a>
+        </article>
+
+        <!-- ResMed NDA -->
+        <article class="card">
+          <a class="card__link" href="projects/resmed.html">
+            <div class="card__media">
+              <div class="thumb"></div>
+            </div>
+            <div class="card__body">
+              <div class="card__top">
+                <h3>ResMed — Medical Concept (NDA)</h3>
+                <span class="chip">Confidential</span>
+              </div>
+              <p class="card__desc">NDA-safe overview. Full case study available upon request.</p>
+              <div class="card__foot"><span class="link">Open overview</span><span class="arrow">→</span></div>
+            </div>
+          </a>
+        </article>
+      </div>
+
+      <div class="more">
+        <a class="more__link" href="index.html#work">Back to selected work <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <p>© <span id="year"></span> Eylia Wahbeh</p>
+      <div class="footer__links"><a href="index.html">Home</a></div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+
+  <style>
+    @media (max-width: 900px){
+      main .grid{ grid-template-columns: 1fr !important; }
+    }
+  </style>
+</body>
+</html>
