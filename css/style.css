@@ -247,11 +247,21 @@ h1{
 .thumb{
   height: 180px;
   background:
+
     radial-gradient(520px 240px at 20% 25%, rgba(255,45,85,.26), transparent 56%),
     radial-gradient(520px 240px at 90% 60%, rgba(255,255,255,.10), transparent 55%),
     linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
 }
-.thumb--hero{ height: 260px; position:relative; }
+.thumb--hero{
+  
+  height: 360px; position:relative;
+ background-image:
+   
+    url("../images/lumina/hero.jpg");
+
+  background-size: cover;
+  background-position: center;
+} 
 .thumb__accent{
   position:absolute; left:18px; bottom:18px;
   width: 58px; height: 4px; border-radius:999px;

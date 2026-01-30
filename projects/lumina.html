@@ -8,79 +8,195 @@
 </head>
 
 <body>
+
+  <!-- HEADER -->
   <header class="topbar">
     <div class="wrap topbar__inner">
-      <a class="brand" href="../index.html">
+      <a class="brand" href="../index.html" aria-label="Home">
         <span class="brand__mark"></span>
         <span class="brand__name">Eylia Wahbeh</span>
       </a>
-      <nav class="nav">
-        <a href="../projects.html">Projects</a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="../index.html#work">Work</a>
         <a href="../index.html#about">About</a>
         <a href="../index.html#contact" class="pill">Contact</a>
       </nav>
     </div>
   </header>
 
+  <!-- MAIN -->
   <main class="section">
     <div class="wrap">
-      <div class="section__head">
-        <h1 class="h1">Lumina Challenge — Seat of Collaboration</h1>
-        <p>An interactive stool designed for Sydney VIVID, celebrating unity through play.</p>
-      </div>
 
-      <div class="case">
+      <!-- INTRO -->
+      <header class="section__head">
+        <h1>Lumina Challenge — Seat of Collaboration</h1>
+        <p>
+          An interactive stool designed for Sydney VIVID — collaboration becomes play,
+          and light becomes the reward.
+        </p>
+
         <div class="chips">
           <span class="chip">Experience</span>
           <span class="chip">Public Interaction</span>
           <span class="chip">Sydney VIVID</span>
         </div>
+      </header>
 
-        <div class="case__grid" style="margin-top:14px;">
-          <div class="case__media">
-            <div class="case__img thumb thumb--hero"></div>
-            <!-- Replace with an image when ready:
-            <img class="case__img" src="../img/lumina-hero.jpg" alt="Lumina stool concept" />
-            -->
-          </div>
+     <!-- MEDIA SEQUENCE -->
+<section class="project-media">
 
-          <div class="case__copy">
-            <h3>Project intent</h3>
-            <p>
-              Lumina is designed to make collaboration physical. It disassembles into five parts,
-              inviting participants to complete shared challenges. When reassembled, the stool illuminates —
-              a symbol of connection and the spark created by teamwork.
-            </p>
+  <!-- 1. HERO -->
+  <figure class="media-block media-block--hero">
+    <img
+      src="../images/lumina/hero.jpg"
+      alt="Lumina stool prototype illuminated"
+    />
+  </figure>
 
-            <h3>Core idea</h3>
-            <ul class="bullets">
-              <li>Disassembly invites interaction</li>
-              <li>Challenges require cooperation</li>
-              <li>Light rewards completion</li>
-            </ul>
-          </div>
-        </div>
+  <!-- 2. LIGHT OFF -->
+  <figure class="media-block">
+    <img
+      src="../images/lumina/light-off.jpg"
+      alt="Lumina stool prototype with light off showing material and structure"
+      loading="lazy"
+    />
+  </figure>
 
-        <div style="margin-top:16px;">
-          <h3>Process (add as you go)</h3>
-          <ul class="bullets">
-            <li>Research: public engagement + playful behavior in shared spaces</li>
-            <li>Sketch exploration: silhouette, assembly logic, stability</li>
-            <li>Prototyping: joinery tests + safe edges + durability</li>
-            <li>Interaction: how strangers understand “what to do” instantly</li>
-          </ul>
+  <!-- 3. FOLDED / CARRY MODE -->
+<figure class="media-block">
+  <img
+    src="../images/lumina/folded.jpg"
+    alt="Lumina stool folded into a portable carry form"
+    loading="lazy"
+  />
+  <figcaption>Folded into a portable carry form</figcaption>
+</figure>
 
-          <h3 style="margin-top:14px;">Outcome</h3>
-          <p>
-            A minimal form with an unusual behavior — the object becomes complete through people,
-            not instructions.
+
+  <!-- 4. EXPERIENCE POSTER -->
+<figure class="media-block">
+  <img
+    src="../images/lumina/poster-01.jpg"
+    alt="Lumina Challenge poster explaining the collaborative experience"
+    loading="lazy"
+  />
+  <figcaption>Experience poster — framing the challenge and interaction</figcaption>
+</figure>
+
+<!-- 5. GAME MAP / CLUE SYSTEM -->
+<figure class="media-block">
+  <img
+    src="../images/lumina/poster-02.jpg"
+    alt="Lumina Challenge poster mapping locations and clue sequence"
+    loading="lazy"
+  />
+  <figcaption>Game structure — locations, clues, and assembly logic</figcaption>
+</figure>
+
+
+</section>
+
+
+      <!-- PROJECT TEXT (clean + short) -->
+      <section>
+        <h2>Project intent</h2>
+        <p>
+          Lumina turns teamwork into a physical action. The stool separates into portable parts,
+          prompting strangers to cooperate through a simple challenge structure. When the form is
+          correctly reassembled, illumination confirms completion — a visible “yes”.
+        </p>
+
+        <h2>Core idea</h2>
+        <ul class="bullets">
+          <li>Parts invite participation</li>
+          <li>Assembly requires cooperation</li>
+          <li>Light rewards the shared outcome</li>
+        </ul>
+      </section>
+
+      <!-- PROCESS -->
+      <section class="process">
+        <div class="process__head">
+          <h2>Process</h2>
+          <p class="process__lede">
+            From interaction concept → assembly logic → material tests → final illuminated prototype.
           </p>
         </div>
+
+        <div class="process__grid">
+
+          <article class="process-card">
+            <h3>Ideation</h3>
+            <p>
+              Exploring interactive formats for VIVID — shifting from “stool first” to “interaction first”.
+            </p>
+            <img
+              src="../images/lumina/process/01-ideation.jpg"
+              alt="Ideation sketches and early concept exploration"
+              loading="lazy"
+            />
+            <p class="cap">Idea pivot → interaction drives form.</p>
+          </article>
+
+          <article class="process-card">
+            <h3>Material + pattern tests</h3>
+            <p>
+              Testing “brick” layout, spacing, and translucency — balancing structure with light bleed.
+            </p>
+            <img
+              src="../images/lumina/process/02-build.jpg"
+              alt="Material and pattern tests for the surface"
+              loading="lazy"
+            />
+            <p class="cap">Pattern testing → structure + glow.</p>
+          </article>
+
+          <article class="process-card">
+            <h3>Assembly logic</h3>
+            <p>
+              Developing a no-fastener interlock system that can be understood quickly in public.
+            </p>
+            <img
+              src="../images/lumina/process/03-assembly.jpg"
+              alt="Assembly prototype parts and joinery logic"
+              loading="lazy"
+            />
+            <p class="cap">No fasteners → intuitive assembly.</p>
+          </article>
+
+          <article class="process-card">
+            <h3>Final prototype</h3>
+            <p>
+              Refining edges, stability, and lighting placement so the final result reads as “complete”.
+            </p>
+            <img
+              src="../images/lumina/process/04-final.jpg"
+              alt="Final prototype showing illuminated effect"
+              loading="lazy"
+            />
+            <p class="cap">Finish + light → confirmation moment.</p>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- OUTCOME -->
+      <section>
+        <h2>Outcome</h2>
+        <p>
+          A minimal object with an unusual behaviour: it becomes whole through people — not instructions.
+        </p>
+      </section>
+
+      <!-- BACK LINK -->
+      <div class="more">
+        <a class="more__link" href="../projects.html">
+          Back to projects <span aria-hidden="true">→</span>
+        </a>
       </div>
 
-      <div class="more">
-        <a class="more__link" href="../projects.html">Back to projects <span aria-hidden="true">→</span></a>
-      </div>
     </div>
   </main>
 
