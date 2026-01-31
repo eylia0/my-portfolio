@@ -450,12 +450,22 @@ h1{
   padding:14px;
   position:relative;
 }
+/* =========================================================
+   ABOUT PORTRAIT — IMAGE + SOFT OVERLAY
+========================================================= */
 .portrait__fill{
   height: 260px;
   border-radius: 16px;
-  background:
+
+  /* IMAGE LAYER (bottom) + DESIGN OVERLAY (top) */
+  background-image:
     radial-gradient(520px 260px at 45% 30%, rgba(255,45,85,.25), transparent 60%),
-    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+    url("../images/eylia.png"); /* ← change image path */
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .portrait__badge{
   position:absolute; right:22px; top:22px;
