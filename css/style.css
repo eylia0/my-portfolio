@@ -1,7 +1,16 @@
+/* =========================================================
+  EYLIA WAHBEH — PORTFOLIO STYLES
+  Clean, commented, and structured for future edits.
+========================================================= */
+
+/* =========================================================
+  0) DESIGN TOKENS
+========================================================= */
 :root{
   --bg: #0b0b0f;
   --bg2:#0f1016;
   --card:#12131a;
+
   --text:#f4f4f7;
   --muted:#b6b7c2;
   --line: rgba(255,255,255,.10);
@@ -11,31 +20,51 @@
 
   --radius: 20px;
   --shadow: 0 20px 60px rgba(0,0,0,.45);
+
+  /* hero sizing */
+  --hero-media-min: 440px;
+  --hero-media-min-lg: 520px;
+
+  /* slideshow */
+  --fade-ms: 650ms;
 }
 
+/* =========================================================
+  1) BASE / RESETS
+========================================================= */
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
+
 body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   color:var(--text);
-  background: radial-gradient(1200px 700px at 30% -10%, rgba(255,45,85,.25), transparent 55%),
-              radial-gradient(900px 600px at 95% 20%, rgba(255,45,85,.10), transparent 60%),
-              linear-gradient(180deg, var(--bg), var(--bg2));
+  background:
+    radial-gradient(1200px 700px at 30% -10%, rgba(255,45,85,.25), transparent 55%),
+    radial-gradient(900px 600px at 95% 20%, rgba(255,45,85,.10), transparent 60%),
+    linear-gradient(180deg, var(--bg), var(--bg2));
   letter-spacing: .2px;
 }
 
 a{ color:inherit; text-decoration:none; }
 p{ color:var(--muted); line-height:1.6; margin:0; }
 h1,h2,h3{ margin:0; letter-spacing:-.02em; }
-code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New"; }
+code{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New";
+}
 
 .wrap{
   width:min(1100px, calc(100% - 48px));
   margin:0 auto;
 }
 
-/* accessibility */
+/* Smooth scroll + prevent sticky header covering anchors */
+html{ scroll-behavior:smooth; }
+#work, #about, #contact{ scroll-margin-top: 90px; }
+
+/* =========================================================
+  2) ACCESSIBILITY
+========================================================= */
 .skip{
   position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
 }
@@ -45,7 +74,9 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liber
   z-index:999;
 }
 
-/* topbar */
+/* =========================================================
+  3) TOPBAR / NAV
+========================================================= */
 .topbar{
   position:sticky; top:0; z-index:50;
   background: rgba(11,11,15,.70);
@@ -65,23 +96,30 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liber
   box-shadow: 0 0 0 2px rgba(255,255,255,.08) inset;
 }
 .brand__name{ font-weight:650; }
+
 .nav{ display:flex; gap:18px; align-items:center; }
 .nav a{ color:var(--muted); }
 .nav a:hover{ color:var(--text); }
+
 .pill{
   padding:9px 12px; border-radius:999px;
   border:1px solid rgba(255,255,255,.14);
   background: rgba(255,255,255,.03);
 }
 
-/* hero */
-.hero{ padding:72px 0 30px; }
+/* =========================================================
+  4) HERO (BIGGER + CLEAN FLOW)
+========================================================= */
+.hero{
+  padding: 96px 0 56px; /* bigger hero statement */
+}
 .hero__inner{
   display:grid;
   grid-template-columns: 1.15fr .85fr;
   gap:28px;
   align-items:center;
 }
+
 .kicker{
   display:inline-flex;
   gap:10px;
@@ -92,13 +130,25 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liber
   color: rgba(255,255,255,.70);
   margin-bottom:12px;
 }
+
 h1{
   font-size: clamp(34px, 5vw, 54px);
   line-height:1.05;
 }
-.lede{ font-size: 16px; margin-top:16px; max-width: 58ch; }
 
-.hero__cta{ display:flex; gap:12px; margin-top:22px; flex-wrap:wrap; }
+.lede{
+  font-size: 16px;
+  margin-top:16px;
+  max-width: 70ch;
+}
+
+.hero__cta{
+  display:flex;
+  gap:12px;
+  margin-top:22px;
+  flex-wrap:wrap;
+}
+
 .btn{
   display:inline-flex; align-items:center; justify-content:center;
   padding:12px 16px;
@@ -107,8 +157,10 @@ h1{
   color: #0b0b0f;
   font-weight: 700;
   border: 1px solid rgba(0,0,0,.12);
+  cursor:pointer;
 }
 .btn:hover{ filter: brightness(1.05); }
+
 .btn--ghost{
   background: rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.16);
@@ -124,9 +176,13 @@ h1{
 .meta__dot{
   width:8px; height:8px; border-radius:50%;
   background: var(--accent);
-  box-shadow: 0 0 0 6px rgba(255,45,85,.12);
+  box-shadow: 0 0 0 6px rgba(167,240,255,.12);
 }
 
+/* =========================================================
+  5) MEDIA CARD (GLASS BASE)
+  - This is your reusable “glass container”
+========================================================= */
 .media{
   position:relative;
   border-radius: var(--radius);
@@ -135,25 +191,37 @@ h1{
     radial-gradient(700px 420px at 20% 15%, rgba(255,45,85,.30), transparent 55%),
     radial-gradient(520px 380px at 100% 40%, rgba(255,255,255,.08), transparent 55%),
     linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-  min-height: 360px;
+  min-height: var(--hero-media-min);
   box-shadow: var(--shadow);
   overflow:hidden;
 }
+
+/* Bigger hero media on large screens */
+@media (min-width: 1100px){
+  .media--hero{ min-height: var(--hero-media-min-lg); }
+}
+
+/* Shine sweep layer */
 .media__shine{
   position:absolute; inset:-40%;
   background: linear-gradient(120deg, transparent, rgba(255,255,255,.10), transparent);
   transform: rotate(20deg);
   animation: shine 6s linear infinite;
   pointer-events:none;
+  z-index: 2;
 }
 @keyframes shine{
   0%{ transform: translateX(-30%) rotate(20deg); }
   100%{ transform: translateX(30%) rotate(20deg); }
 }
+
+/* Tags */
 .media__label{
   position:absolute; left:16px; top:16px;
   display:flex; gap:8px;
+  z-index: 3;
 }
+
 .tag{
   font-size:12px;
   padding:7px 10px;
@@ -167,13 +235,60 @@ h1{
   border-color: rgba(255,255,255,.14);
 }
 
-/* sections */
+/* =========================================================
+  6) HERO IMAGE LAYER (BEHIND GLASS EFFECTS)
+  - JS swaps --hero-img during slideshow
+========================================================= */
+.media--hero{
+  --hero-img: url("../images/hero/slide-1.jpg"); /* fallback */
+}
+
+/* Image layer */
+.media--hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image: var(--hero-img);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* darkened + premium */
+  filter: brightness(0.80) contrast(1.05) saturate(0.95);
+
+  opacity: 1;
+  transition: opacity var(--fade-ms) ease;
+
+  z-index: 0;
+}
+
+/* Fade helper used by JS */
+.media--hero.is-fading::before{
+  opacity: 0;
+}
+
+/* Extra dark overlay (keeps text readable + consistent tone) */
+.media--hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(60% 60% at 30% 25%, rgba(255,255,255,0.06), rgba(0,0,0,0.55)),
+    linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.55));
+  z-index: 1;
+}
+
+/* =========================================================
+  7) SECTIONS
+========================================================= */
 .section{ padding:56px 0; }
+
 .section--soft{
   background: linear-gradient(180deg, transparent, rgba(255,255,255,.02), transparent);
   border-top:1px solid rgba(255,255,255,.06);
   border-bottom:1px solid rgba(255,255,255,.06);
 }
+
 .section__head{
   display:flex;
   align-items:flex-end;
@@ -184,18 +299,21 @@ h1{
 .section__head h2{ font-size: 22px; }
 .section__head p{ max-width: 54ch; }
 
-/* grid/cards */
-.grid{
-  display:grid;
-  gap:16px;
-}
+/* =========================================================
+  8) GRIDS + CARDS (PROJECT LISTING)
+========================================================= */
+.grid{ display:grid; gap:16px; }
+
 .grid--featured{
   grid-template-columns: 1.2fr .8fr;
   grid-template-rows: auto auto;
 }
+
 .grid--projects{
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+
+/* Card base */
 .card{
   border-radius: var(--radius);
   border:1px solid rgba(255,255,255,.12);
@@ -210,6 +328,7 @@ h1{
 .card__link{ display:block; height:100%; }
 .card__media{ border-bottom:1px solid rgba(255,255,255,.08); }
 .card__body{ padding:16px; }
+
 .card__top{
   display:flex;
   align-items:center;
@@ -217,6 +336,7 @@ h1{
   gap:10px;
 }
 .card__top h3{ font-size: 16px; }
+
 .chip{
   font-size:12px;
   padding:6px 10px;
@@ -225,7 +345,9 @@ h1{
   background: rgba(255,255,255,.04);
   color: rgba(255,255,255,.78);
 }
+
 .card__desc{ margin-top:10px; }
+
 .card__foot{
   display:flex; align-items:center; justify-content:space-between;
   margin-top:14px;
@@ -234,9 +356,8 @@ h1{
 .link{ color: rgba(255,255,255,.85); }
 .arrow{ color: var(--accent); }
 
-.card--featured{
-  grid-row: 1 / span 2;
-}
+.card--featured{ grid-row: 1 / span 2; }
+
 .bullets{
   margin:12px 0 0;
   padding-left:18px;
@@ -244,46 +365,46 @@ h1{
 }
 .bullets li{ margin:6px 0; }
 
+/* Thumbnails (project covers) */
 .thumb{
   height: 180px;
   background:
-
     radial-gradient(520px 240px at 20% 25%, rgba(255,45,85,.26), transparent 56%),
     radial-gradient(520px 240px at 90% 60%, rgba(255,255,255,.10), transparent 55%),
     linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
 }
-.thumb--hero{
-  
-  height: 360px; position:relative;
- background-image:
-   
-    url("../images/lumina/hero.jpg");
 
+/* Project cover images */
+.thumb--hero{
+  height: 360px;
+  position:relative;
+  background-image: url("../images/lumina/hero.jpg");
   background-size: cover;
   background-position: center;
-} 
+}
+
 .thumb__accent{
   position:absolute; left:18px; bottom:18px;
   width: 58px; height: 4px; border-radius:999px;
   background: var(--accent);
-  box-shadow: 0 0 0 8px rgba(255,45,85,.12);
+  box-shadow: 0 0 0 8px rgba(167,240,255,.12);
 }
-.thumb--1{
-  background-image:
-   
-    url("../images/rolono/hero.jpg");
 
+.thumb--1{
+  background-image: url("../images/rolono/hero.jpg");
   background-size: cover;
   background-position: center;
 }
 
 .thumb--2{
-  background:
-    radial-gradient(520px 240px at 70% 25%, rgba(255,45,85,.22), transparent 58%),
-    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  background-image: url("../images/circular/circular-economy.png");
+  background-size: cover;
+  background-position: center;
 }
 
-/* more link */
+/* =========================================================
+  9) “SEE MORE” LINK
+========================================================= */
 .more{ margin-top:18px; }
 .more__link{
   display:inline-flex; gap:10px; align-items:center;
@@ -291,9 +412,14 @@ h1{
   color: rgba(255,255,255,.85);
   border-bottom:1px solid rgba(255,255,255,.12);
 }
-.more__link:hover{ color: var(--text); border-bottom-color: rgba(255,255,255,.22); }
+.more__link:hover{
+  color: var(--text);
+  border-bottom-color: rgba(255,255,255,.22);
+}
 
-/* about */
+/* =========================================================
+  10) ABOUT
+========================================================= */
 .about{
   display:grid;
   grid-template-columns: 1.1fr .9fr;
@@ -301,12 +427,14 @@ h1{
   align-items:start;
 }
 .about__lede{ margin-top:10px; max-width: 60ch; }
+
 .about__grid{
   margin-top:18px;
   display:grid;
   grid-template-columns: 1fr 1fr;
   gap:12px;
 }
+
 .mini{
   border-radius: 16px;
   border:1px solid rgba(255,255,255,.10);
@@ -339,21 +467,31 @@ h1{
 }
 .portrait__note{ margin-top:10px; }
 
-/* contact form */
+/* =========================================================
+  11) CONTACT FORM
+========================================================= */
 .contact{
   display:grid;
   grid-template-columns: 1fr 1fr;
   gap:18px;
   align-items:start;
 }
+
 .form{
   border-radius: var(--radius);
   border:1px solid rgba(255,255,255,.12);
   background: rgba(255,255,255,.03);
   padding:16px;
 }
+
 label{ display:block; margin-top:12px; }
-label span{ display:block; font-size:12px; color: rgba(255,255,255,.70); margin-bottom:6px; }
+label span{
+  display:block;
+  font-size:12px;
+  color: rgba(255,255,255,.70);
+  margin-bottom:6px;
+}
+
 input, textarea{
   width:100%;
   padding:12px 12px;
@@ -365,8 +503,12 @@ input, textarea{
 }
 textarea{ min-height: 120px; resize: vertical; }
 .row{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
-/* projects page */
+
+/* =========================================================
+  12) PROJECT PAGES (CASE WRAPPER)
+========================================================= */
 .h1{ font-size: 34px; }
+
 .case{
   margin-top:16px;
   border-radius: var(--radius);
@@ -374,15 +516,272 @@ textarea{ min-height: 120px; resize: vertical; }
   background: rgba(255,255,255,.03);
   padding:16px;
 }
+
 .case__grid{
   margin-top:12px;
   display:grid;
   grid-template-columns: 1fr 1fr;
   gap:14px;
 }
+
 .chips{ display:flex; gap:8px; flex-wrap:wrap; }
 
-/* footer */
+/* =========================================================
+  13) MEDIA BLOCKS (IMAGES / VIDEO)
+========================================================= */
+.project-media{
+  display: grid;
+  gap: 24px;
+  margin-top: 32px;
+}
+.media-block{ width: 100%; }
+
+.media-block img,
+.media-block video{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+.media-block--video video{
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+/* =========================================================
+  14) PROCESS CARDS (IF USED)
+========================================================= */
+.process { margin-top: 44px; }
+.process__head { max-width: 70ch; margin-bottom: 18px; }
+.process__lede { opacity: 0.9; }
+
+.process__grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.process-card{
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  padding: 14px;
+  background: rgba(255,255,255,0.03);
+}
+
+.process-card h3{ margin: 0 0 8px; }
+.process-card p{ margin: 0 0 10px; }
+.process-card img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius: 12px;
+}
+
+.cap{
+  font-size: 0.9rem;
+  opacity: 0.75;
+  margin-top: 10px;
+}
+
+/* =========================================================
+  15) MEDIA FRAME (SQUARE COLLAGE / VIDEO TILE)
+========================================================= */
+.media-frame{
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-top: 35px;
+}
+
+.media-frame--square{ aspect-ratio: 1 / 1; }
+
+.media-frame__media{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  filter: contrast(1.05) brightness(0.9) saturate(0.9);
+  transform: scale(1.03);
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.media-frame__overlay{
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 60% at 50% 40%, rgba(255,255,255,0.05), rgba(0,0,0,0.5));
+  pointer-events: none;
+}
+
+.process-card:hover .media-frame__media{
+  transform: scale(1.07);
+  filter: contrast(1.15) brightness(1.05) saturate(1);
+}
+
+/* =========================================================
+  16) CASE PAGE HELPERS (CIRCULAR PAGE)
+========================================================= */
+.case-block{
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+}
+
+.block-head .sub{
+  margin-top: 6px;
+  max-width: 70ch;
+  opacity: 0.85;
+}
+
+.case-grid{
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 16px;
+  align-items: start;
+}
+
+/* Cards on case pages */
+.media-card{
+  margin: 0;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.03);
+}
+
+.media-img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.caption{
+  margin-top: 10px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* =========================================================
+  17) CALLOUT: “WHAT I’M MEASURING” (ACCENT STYLE)
+========================================================= */
+.callout{
+  padding: 16px;
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(167, 240, 255, 0.14), rgba(167, 240, 255, 0.06));
+  border: 1px solid rgba(167, 240, 255, 0.35);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+}
+
+.callout h3{
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.metrics{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.metrics li{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(167, 240, 255, 0.25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.metrics .k{
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
+}
+.metrics .v{
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* =========================================================
+  18) DOWNLOADS / MORE INFO (IF USED)
+========================================================= */
+.dl-grid{
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.dl-card{
+  display: block;
+  padding: 14px 14px 12px;
+  border-radius: 16px;
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(167, 240, 255, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.dl-card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(167, 240, 255, 0.45);
+  background: rgba(0, 0, 0, 0.42);
+}
+
+.dl-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 10px;
+}
+
+.dl-title{
+  font-weight: 650;
+  color: rgba(255,255,255,0.92);
+}
+
+.dl-tag{
+  font-size: 0.85rem;
+  color: var(--accent);
+  border: 1px solid rgba(167, 240, 255, 0.35);
+  background: rgba(167, 240, 255, 0.08);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.dl-desc{
+  margin: 8px 0 10px;
+  color: rgba(255,255,255,0.72);
+  max-width: 60ch;
+}
+
+.dl-cta{
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* =========================================================
+  19) FOOTER
+========================================================= */
 .footer{
   padding:24px 0 40px;
   border-top:1px solid rgba(255,255,255,.06);
@@ -395,126 +794,59 @@ textarea{ min-height: 120px; resize: vertical; }
 .footer a{ color: rgba(255,255,255,.70); }
 .footer a:hover{ color: var(--text); }
 
-/* responsive */
+/* =========================================================
+  20) WORK IN PROGRESS POPUP (if you add the HTML)
+========================================================= */
+.wip{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  z-index: 999;
+}
+
+.wip__card{
+  max-width: 420px;
+  padding: 22px;
+  border-radius: 20px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.wip__card h3{
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.wip__card p{
+  margin-bottom: 18px;
+  color: rgba(255,255,255,0.85);
+}
+
+.wip.is-hidden{ display:none; }
+
+/* =========================================================
+  21) RESPONSIVE
+========================================================= */
 @media (max-width: 900px){
+  .hero{ padding: 72px 0 40px; }
   .hero__inner{ grid-template-columns: 1fr; }
+  .media{ min-height: 360px; }
+
   .grid--featured{ grid-template-columns: 1fr; }
   .grid--projects{ grid-template-columns: 1fr; }
   .card--featured{ grid-row:auto; }
+
   .about{ grid-template-columns: 1fr; }
   .contact{ grid-template-columns: 1fr; }
   .case__grid{ grid-template-columns: 1fr; }
+  .case-grid{ grid-template-columns: 1fr; }
   .row{ grid-template-columns: 1fr; }
-}
-.project-media {
-  display: grid;
-  gap: 24px;
-  margin-top: 32px;
-}
-
-.media-block {
-  width: 100%;
-}
-
-.media-block img,
-.media-block video {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 8px;
-}
-
-/* Hero image gets a bit more presence */
-.media-block--hero img {
-  border-radius: 12px;
-}
-
-/* Video should feel embedded, not flashy */
-.media-block--video video {
-  background: #f5f5f5;
-}
-/* PROCESS */
-.process { margin-top: 44px; }
-.process__head { max-width: 70ch; margin-bottom: 18px; }
-.process__lede { opacity: 0.9; }
-
-.process__grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 18px;
-}
-
-.process-card {
-  background: rgba(0,0,0,0.02);
-  border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 12px;
-  padding: 14px;
-}
-
-.process-card h3 { margin: 0 0 8px; }
-.process-card p { margin: 0 0 10px; }
-
-.process-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 10px;
-}
-
-.cap {
-  font-size: 0.9rem;
-  opacity: 0.75;
-  margin-top: 10px;
-}
-
-@media (max-width: 900px) {
-  .process__grid { grid-template-columns: 1fr; }
-}
-/* matches collage tiles exactly */
-.media-frame{
-  position: relative;
-  width: 100%;
-  border-radius: 16px;
-  overflow: hidden;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  
-}
-
-/* FORCE square like your collages */
-.media-frame--square{
-  aspect-ratio: 1 / 1;
-}
-
-/* video behaves like an image */
-.media-frame__media{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-
-  /* calm, designed look */
-  filter: contrast(1.05) brightness(0.9) saturate(0.9);
-  transform: scale(1.03);
-  transition: transform 0.6s ease, filter 0.6s ease;
-}
-
-/* soft dark overlay = consistency */
-.media-frame__overlay{
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(60% 60% at 50% 40%, rgba(255,255,255,0.05), rgba(0,0,0,0.5));
-  pointer-events: none;
-}
-
-/* subtle “activation” on hover */
-.process-card:hover .media-frame__media{
-  transform: scale(1.07);
-  filter: contrast(1.15) brightness(1.05) saturate(1);
-}
-.media-frame{
-  margin-top: 35px;   /* ← add this */
+  .process__grid{ grid-template-columns: 1fr; }
+  .dl-grid{ grid-template-columns: 1fr; }
 }

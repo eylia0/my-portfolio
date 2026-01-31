@@ -8,6 +8,21 @@
 </head>
 
 <body>
+
+    <!-- =========================================================
+    WORK IN PROGRESS NOTICE (shown once)
+  ========================================================= -->
+  <div class="wip" id="wip">
+    <div class="wip__card">
+      <h3>Work in progress</h3>
+      <p>
+        This portfolio is actively evolving.  
+        Some projects are still being refined — thank you for viewing it with that in mind.
+      </p>
+      <button class="btn" id="wipClose">Got it</button>
+    </div>
+  </div>
+
   <a class="skip" href="#main">Skip to content</a>
 
   <!-- HEADER -->
@@ -56,7 +71,7 @@
         </div>
 
         <div class="hero__media" aria-label="Featured visual">
-          <div class="media media--hero" data-tilt>
+          <div class="media media--hero" data-tilt data-hero="../images/hero/slide-1.jpg,../images/hero/slide-2.jpg,../images/hero/slide-3.jpg">
             <div class="media__shine"></div>
             <div class="media__label">
               <span class="tag">Featured</span>
@@ -145,15 +160,17 @@
               <div class="card__body">
                 <div class="card__top">
                   <h3>Circular Economy Concepts</h3>
-                  <span class="chip">Circular Design</span>
+                  <span class="chip">Circular Design · SDG 12</span>
                 </div>
 
-                <p class="card__desc">
-                  Two concept redesigns exploring repairability, reuse, and long-term sustainability.
+               <p class="card__desc">
+                  Two redesigns grounded in circular economy thinking, focused on reducing waste,
+                  conserving resources, and designing products that remain in use for longer.
                 </p>
 
+
                 <div class="card__foot">
-                  <span class="link">View project</span>
+                  <span class="link">View case study</span>
                   <span class="arrow">→</span>
                 </div>
               </div>
@@ -219,6 +236,12 @@
           <p>Interested in full case studies or NDA work?</p>
         </div>
 
+        <!-- Direct email (edit MY_EMAIL in js/script.js) -->
+        <p class="contact__email">
+          <a class="contact__emailLink" href="mailto:eylia@example.com">eylia@example.com</a>
+          <span class="contact__emailHint">· quickest way to reach me</span>
+        </p>
+
         <form class="form" onsubmit="return false;">
           <div class="row">
             <label>
@@ -253,6 +276,7 @@
       </div>
     </div>
   </footer>
+  
 
   <script src="js/script.js"></script>
 </body>
