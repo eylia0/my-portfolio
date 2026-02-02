@@ -240,7 +240,7 @@ h1{
   - JS swaps --hero-img during slideshow
 ========================================================= */
 .media--hero{
-  --hero-img: url("../images/hero/slide-1.jpg"); /* fallback */
+  --hero-img: url("../images/hero/slide-1.jpg","../images/hero/slide-2.jpg","../images/hero/slide-3.jpg","../images/hero/slide-4.jpg","../images/eylia.png"); /* fallback */
 }
 
 /* Image layer */
@@ -249,7 +249,7 @@ h1{
   position:absolute;
   inset:0;
   background-image: var(--hero-img);
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 
@@ -461,9 +461,9 @@ h1{
   background-image:
     radial-gradient(520px 260px at 45% 30%, rgba(255,45,85,.25), transparent 60%),
     linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
-    url("../images/eylia.png"); /* ← change image path */
+    url("../images/lily_\ in_the_sky.jpg"); /* ← change image path */
 
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
