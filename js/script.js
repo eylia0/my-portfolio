@@ -100,5 +100,26 @@
     el.classList.add("is-hidden");
   });
 })();
+/* =========================================================
+  TERMS / IP ACKNOWLEDGEMENT (show once)
+========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const KEY = "terms_accepted";
+  const notice = document.getElementById("termsNotice");
+  const btn = document.getElementById("termsAccept");
+
+  if (!notice || !btn) return;
+
+  if (localStorage.getItem(KEY)) {
+    notice.classList.add("is-hidden");
+    return;
+  }
+
+  btn.addEventListener("click", () => {
+    localStorage.setItem(KEY, "1");
+    notice.classList.add("is-hidden");
+  });
+});
+
 
 

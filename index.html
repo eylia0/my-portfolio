@@ -242,45 +242,44 @@
       </div>
     </section>
 
- <!-- CONTACT -->
-<section id="contact" class="section contact-reveal">
-  <div class="wrap contact contact--lean">
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="wrap">
 
-    <div class="contact-intro">
+    <div class="contactCard" >
 
-      
+      <div class="contactCard__row">
+        <div class="contactCard__left">
+          <span class="contactCard__eyebrow">Contact</span>
 
-      <div class="contact-statement">
-        <p class="statement-primary">
-          This is where ideas leave the page.
-        </p>
-        
+          <h2 class="contactCard__headline">
+            <span>This is where ideas</span>
+            <span class="accent">leave the page.</span>
+          </h2>
+        </div>
+
+        <nav class="contactPills contactPills--right" aria-label="Contact links">
+          <a class="chipLink" href="https://www.linkedin.com/in/eylia-wahbeh-6539a7212" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="chipLink" href="https://new.express.adobe.com/publishedV2/urn:aaid:sc:AP:96e5a5f9-c446-4a91-8924-aafc4dcccb20" target="_blank" rel="noopener noreferrer">Resume</a>
+          <a class="chipLink" href="https://www.instagram.com/eylia_id/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </nav>
       </div>
-      
-      <p class="contact-email">
-        contact me at
-        <a href="mailto:eyliawahbeh@gmail.com">
-          eyliawahbeh@gmail.com
-        </a>
-      </p>
-      
-      <nav class="contact-links">
-        <a href="https://www.linkedin.com/in/eylia-wahbeh-6539a7212"
-           target="_blank" rel="noopener noreferrer">
-          LinkedIn
+
+      <div class="contactCard__actions">
+        <a class="cta cta--primary"
+           href="mailto:eyliawahbeh@gmail.com?subject=Let’s%20take%20this%20further">
+          Email me
         </a>
 
-        <a href="https://new.express.adobe.com/publishedV2/urn:aaid:sc:AP:96e5a5f9-c446-4a91-8924-aafc4dcccb20"
-           target="_blank" rel="noopener noreferrer">
-          Resume
-        </a>
+        <div class="emailBox">
+          <a class="emailBox__link" href="mailto:eyliawahbeh@gmail.com">
+            eyliawahbeh@gmail.com
+          </a>
+          <div class="emailBox__note">Best for collaborations, studio roles, or production enquiries.</div>
+        </div>
+      </div>
 
-        <a href="https://www.instagram.com/eylia_id/"
-           target="_blank" rel="noopener noreferrer">
-          Instagram
-        </a>
-      </nav>
-
+      <div class="contactCard__shine" aria-hidden="true"></div>
     </div>
 
   </div>
@@ -288,18 +287,40 @@
 
 
 
+
   </main>
 
   <footer class="footer">
     <div class="wrap footer__inner">
-      <p>© <span id="year"></span> Eylia Wahbeh</p>
+      <p class="footer__ip">
+        © <span id="year"></span> Eylia Wahbeh. <br> 
+        All work shown is protected intellectual property.  
+        
+      </p>
+  
       <div class="footer__links">
         <a href="projects.html">Projects</a>
+        <a href="terms.html">Terms</a>
       </div>
     </div>
   </footer>
+
   
 
   <script src="js/script.js"></script>
+  <!-- TERMS ACKNOWLEDGEMENT -->
+<div id="termsNotice" class="termsNotice">
+  <div class="termsNotice__card">
+    <p>
+      All work on this site is protected intellectual property.
+      Some projects may be available for licensing or collaboration.
+    </p>
+    <div class="termsNotice__actions">
+      <a href="terms.html">View terms</a>
+      <button id="termsAccept" class="btn btn--ghost">I understand</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
