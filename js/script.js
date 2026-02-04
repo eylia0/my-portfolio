@@ -1,38 +1,4 @@
 /* =========================================================
-  CONFIG (EDIT THIS)
-========================================================= */
-const MY_EMAIL = "eylia@example.com"; // <-- change to your real email
-
-/* =========================================================
-  CONTACT: Copy email (no popups)
-========================================================= */
-function copyEmail() {
-  const btn = document.querySelector('[onclick="copyEmail()"]');
-  const original = btn ? btn.textContent : "";
-
-  const done = () => {
-    if (btn) {
-      btn.textContent = "Copied ✓";
-      setTimeout(() => (btn.textContent = original || "Copy my email"), 1400);
-    }
-  };
-
-  navigator.clipboard.writeText(MY_EMAIL).then(done).catch(() => {
-    // Fallback: show prompt so user can copy manually
-    window.prompt("Copy email:", MY_EMAIL);
-    done();
-  });
-}
-
-/* Keep the visible email link in sync with MY_EMAIL */
-(function syncEmailLink(){
-  const a = document.querySelector(".contact__emailLink");
-  if (!a) return;
-  a.textContent = MY_EMAIL;
-  a.setAttribute("href", `mailto:${MY_EMAIL}`);
-})();
-
-/* =========================================================
   FOOTER: Current year
 ========================================================= */
 (function setYear(){
@@ -134,3 +100,5 @@ function copyEmail() {
     el.classList.add("is-hidden");
   });
 })();
+
+

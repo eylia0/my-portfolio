@@ -478,41 +478,88 @@ h1{
 .portrait__note{ margin-top:10px; }
 
 /* =========================================================
-  11) CONTACT FORM
+  11) CONTACT — LEAN, AUTHORED
 ========================================================= */
-.contact{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:18px;
-  align-items:start;
+
+.contact--lean{
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
 }
 
-.form{
-  border-radius: var(--radius);
-  border:1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.03);
-  padding:16px;
+.contact-intro{
+  max-width: 560px;
 }
 
-label{ display:block; margin-top:12px; }
-label span{
-  display:block;
-  font-size:12px;
-  color: rgba(255,255,255,.70);
-  margin-bottom:6px;
+/* Statement */
+.contact-statement{
+  margin-top: 12px;
 }
 
-input, textarea{
+.statement-primary{
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: rgba(255,255,255,.95);
+  margin: 0;
+}
+
+.statement-secondary{
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--muted);
+  opacity: 0.85;
+}
+
+/* Email */
+.contact-email{
+  margin-top: 22px;
+}
+
+.contact-email a{
+  font-size: 16px;
+  font-weight: 600;
+  position: relative;
+}
+
+.contact-email a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-4px;
   width:100%;
-  padding:12px 12px;
-  border-radius: 14px;
-  border:1px solid rgba(255,255,255,.14);
-  background: rgba(11,11,15,.35);
-  color: var(--text);
-  outline:none;
+  height:2px;
+  background: var(--accent);
+  opacity: 0.4;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
 }
-textarea{ min-height: 120px; resize: vertical; }
-.row{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+
+.contact-email a:hover::after{
+  transform: scaleX(1);
+}
+
+/* Links */
+.contact-links{
+  margin-top: 18px;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.contact-links a{
+  font-size: 13px;
+  color: rgba(255,255,255,.65);
+  position: relative;
+  transition: color 180ms ease;
+}
+
+.contact-links a:hover{
+  color: var(--text);
+}
+
 
 /* =========================================================
   12) PROJECT PAGES (CASE WRAPPER)
