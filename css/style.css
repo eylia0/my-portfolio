@@ -1088,3 +1088,176 @@ h1{
   }
 }
 
+/* =========================================================
+   ISS PAGE — STARFIELD BACKGROUND (CALM + ANIMATED)
+   Usage: <body class="space-theme">
+========================================================= */
+
+.space-theme{
+  background-color: #05060b;
+  color: rgba(255,255,255,.92);
+  position: relative;
+  overflow-x: hidden;
+
+  /* Starfield image + soft readability layer */
+  background-image:
+    linear-gradient(180deg, rgba(5,6,11,.78), rgba(5,6,11,.88)),
+    url("../images/bg/starfield.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Calm glass panels so they don’t overpower background */
+.space-theme .case,
+.space-theme .media-card,
+.space-theme .callout{
+  background: rgba(10,12,18,.50);
+  border-color: rgba(255,255,255,.12);
+  backdrop-filter: blur(16px);
+}
+
+/* Text clarity */
+.space-theme p,
+.space-theme li,
+.space-theme .lede{
+  color: rgba(255,255,255,.86);
+}
+
+.space-theme .h1,
+.space-theme .h2,
+.space-theme .h3{
+  color: rgba(255,255,255,.95);
+}
+
+.space-theme .chip{
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.14);
+  color: rgba(255,255,255,.88);
+}
+
+/* =========================================================
+   MOVING STARS (very subtle depth drift)
+========================================================= */
+
+.space-theme::before,
+.space-theme::after{
+  content:"";
+  position: fixed;
+  inset: -40%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Small dense stars (slow drift) */
+.space-theme::before{
+  background-image:
+    radial-gradient(rgba(255,255,255,.5) 1px, transparent 1.6px);
+  background-size: 140px 140px;
+  animation: starsMove1 160s linear infinite;
+  opacity: .45;
+}
+
+/* Larger sparse stars (parallax layer + twinkle) */
+.space-theme::after{
+  background-image:
+    radial-gradient(rgba(255,255,255,.4) 1.6px, transparent 2.6px);
+  background-size: 320px 320px;
+  animation: starsMove2 220s linear infinite, starsTwinkle 7s ease-in-out infinite alternate;
+  opacity: .28;
+}
+
+@keyframes starsMove1{
+  from{ transform: translate3d(0,0,0); }
+  to  { transform: translate3d(-200px, 160px, 0); }
+}
+
+@keyframes starsMove2{
+  from{ transform: translate3d(0,0,0); }
+  to  { transform: translate3d(-140px, 110px, 0); }
+}
+
+@keyframes starsTwinkle{
+  from{ opacity: .20; }
+  to  { opacity: .38; }
+}
+
+/* =========================================================
+   HERO (two-layer crossfade + tilt)
+========================================================= */
+
+.hero-interactive{ margin-top: 14px; }
+
+.hero-container{
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(127,212,255,.25);
+  background:
+    radial-gradient(700px 420px at 20% 15%, rgba(0,120,255,.18), transparent 55%),
+    radial-gradient(520px 380px at 95% 55%, rgba(170,120,255,.10), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  box-shadow: 0 30px 90px rgba(0,0,0,.55);
+
+  /* IMPORTANT: gives height since images are absolute */
+  aspect-ratio: 16 / 9;
+}
+
+.hero-img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+
+  transform: scale(1.03);
+  filter: contrast(1.08) brightness(.92) saturate(.98);
+  transition: transform .35s ease, filter .35s ease;
+  will-change: transform;
+}
+
+.hero-img--base{ z-index:1; }
+
+.hero-img--overlay{
+  z-index:2;
+  opacity:0;
+  transition: opacity 5.8s ease-in-out, transform .35s ease, filter .35s ease;
+  filter: contrast(1.08) brightness(.95) saturate(1.03);
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(60% 60% at 40% 20%, rgba(255,255,255,.07), rgba(0,0,0,.55)),
+    linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.35));
+  opacity:.9;
+  z-index:3;
+}
+
+.hero-text{
+  position:absolute;
+  left:22px;
+  bottom:20px;
+  right:22px;
+  max-width:68ch;
+  z-index:4;
+}
+
+.hero-title{
+  font-size: clamp(22px, 3vw, 34px);
+  line-height: 1.1;
+  margin: 0 0 8px;
+  color: rgba(255,255,255,.95);
+  letter-spacing: -0.02em;
+}
+
+.hero-sub{
+  margin: 0;
+  color: rgba(255,255,255,.78);
+  max-width: 70ch;
+}
+
+.section__head .lede{ max-width: 78ch; }

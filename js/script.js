@@ -120,6 +120,59 @@ document.addEventListener("DOMContentLoaded", () => {
     notice.classList.add("is-hidden");
   });
 });
+/* =========================================================
+  EARTHLIGHT HERO: crossfade + tilt
+  Runs only if the Earthlight hero exists on the page
+========================================================= */
+(function(){
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  const base = document.getElementById("heroImgBase");
+  const overlay = document.getElementById("heroImgOverlay");
+  const card = document.getElementById("heroCard");
+  if(!base || !overlay || !card) return;
+
+  // Crossfade rhythm
+  let on = false;
+  const cycleMs = 9000; // change to 7000 for faster, 11000 for slower
+
+  function toggle(){
+    on = !on;
+    overlay.style.opacity = on ? "1" : "0";
+  }
+
+  // Start once page fully loads (prevents first-fade glitch)
+  window.addEventListener("load", () => {
+    toggle();
+    setInterval(toggle, cycleMs);
+  });
+
+  // Tilt (applies to both layers)
+  function onMove(e){
+    const r = card.getBoundingClientRect();
+    const cx = r.left + r.width/2;
+    const cy = r.top + r.height/2;
+
+    const dx = (e.clientX - cx) / r.width;
+    const dy = (e.clientY - cy) / r.height;
+
+    const rotY = dx * 8;
+    const rotX = -dy * 6;
+
+    const t = `scale(1.06) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+    base.style.transform = t;
+    overlay.style.transform = t;
+  }
+
+  function onLeave(){
+    base.style.transform = "scale(1.03)";
+    overlay.style.transform = "scale(1.03)";
+  }
+
+  card.addEventListener("mousemove", onMove);
+  card.addEventListener("mouseleave", onLeave);
+})();
 
 
 
