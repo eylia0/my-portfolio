@@ -1267,14 +1267,3 @@ h1{
 }
 
 .section__head .lede{ max-width: 78ch; }
-/* VR ROOM cover image */
-.thumb--vr{
-  background-image: url("../images/vr-room/cover.jpg");
-  background-size: cover;
-  background-position: center;
-}
-/* VR Room page: make chips behave like links when used as nav */
-.chips a.chip{
-  text-decoration: none;
-  cursor: pointer;
-}
