@@ -111,7 +111,7 @@ function init(host) {
       g.userData.lifts = Math.abs(g.userData.dir.x) > Math.abs(g.userData.dir.z);
       parts.push(g);
     });
-    top.add(top.userData.plate, top.userData.wood);
+    [top.userData.plate, top.userData.wood].forEach((m) => m && top.add(m));
     scene.add(top);
     host.classList.add('is-ready');
     setStatus();
