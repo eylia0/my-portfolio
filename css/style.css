@@ -1443,7 +1443,11 @@ ol.process span::before{ content: counter(step, decimal-leading-zero) "  "; colo
 /* ---------- About / contact tweaks ---------- */
 .home .about{ align-items:center; }
 .home .about__lede{ margin-top:16px; font-size:15.5px; }
-.home .portrait__fill{ height: 380px; background-size: cover; }
+.home .portrait__fill{
+  height: 460px; background-size: cover; background-position: center 18%;
+  background-image: linear-gradient(180deg, rgba(11,11,15,0) 70%, rgba(11,11,15,.35)), url("../images/about/eylia-panel.jpg");
+}
+@media (max-width: 960px){ .home .portrait__fill{ height: 420px; } }
 .contactCard__sub{ margin-top:12px; max-width:52ch; }
 
 /* ---------- Responsive ---------- */
