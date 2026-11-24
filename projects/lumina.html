@@ -108,6 +108,27 @@
 </section>
 
 
+      <!-- INTERACTIVE 3D MODEL -->
+      <section class="l3d" id="lumina3d" data-model="../models/lumina.glb" aria-labelledby="l3d-title">
+        <div class="l3d__head">
+          <div>
+            <p class="eyebrow">Interactive 3D model</p>
+            <h2 id="l3d-title">Take it apart. Put it back. Watch it light up.</h2>
+          </div>
+          <p class="l3d__lede">Four curved acrylic walls slot together like a #. Copper contacts at each joint close the circuit, so the light only comes on when it’s whole. Drag to turn it around.</p>
+        </div>
+        <div class="l3d__stage">
+          <div class="l3d__canvas" role="img" aria-label="3D model of the Lumina stool that can be taken apart and reassembled"></div>
+          <noscript><p class="l3d__fallback">Turn on JavaScript to view the 3D model.</p></noscript>
+          <div class="l3d__ui">
+            <button type="button" class="btn" data-l3d="assemble" aria-pressed="false">Take it apart</button>
+            <button type="button" class="btn btn--ghost" data-l3d="light">Light off</button>
+            <p class="l3d__status" aria-live="polite"></p>
+          </div>
+        </div>
+        <p class="l3d__note">Built from my SolidWorks models: 500 mm tall, 6 mm acrylic walls, 30 × 100 × 3 mm pine slabs.</p>
+      </section>
+
       <!-- PROJECT TEXT (clean + short) -->
       <section>
         <h2>Project intent</h2>
@@ -230,6 +251,13 @@
   </footer>
 
   <script src="../js/script.js"></script>
+  <script type="importmap">
+    { "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
+  <script type="module" src="../js/lumina3d.js"></script>
   
 </body>
 </html>
