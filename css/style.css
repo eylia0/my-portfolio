@@ -240,7 +240,7 @@ h1{
   - JS swaps --hero-img during slideshow
 ========================================================= */
 .media--hero{
-  --hero-img: url("../images/hero/slide-1.jpg","../images/hero/slide-2.jpg","../images/hero/slide-3.jpg","../images/hero/slide-4.jpg","../images/eylia.png"); /* fallback */
+  --hero-img: url("../images/hero/slide-1.jpg"); /* fallback */
 }
 
 /* Image layer */
@@ -397,13 +397,13 @@ h1{
 }
 
 .thumb--2{
-  background-image: url("../images/circular/circular-economy.png");
+  background-image: url("../images/circular/circular-economy.jpg");
   background-size: cover;
   background-position: center;
 }
 .thumb--3
 {
-  background-image: url("../images/iss/iss-christmas.png");
+  background-image: url("../images/iss/iss-christmas.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -706,6 +706,11 @@ h1{
   gap: 24px;
   margin-top: 32px;
 }
+/* Reset browser default figure margins (40px each side) that pushed
+   images wider than the screen on phones */
+figure{ margin: 0; }
+img, video{ max-width: 100%; }
+
 .media-block{ width: 100%; }
 
 .media-block img,
@@ -1023,6 +1028,15 @@ h1{
   .dl-grid{ grid-template-columns: 1fr; }
 }
 
+/* Phones: stack page headers (title, intro, chips) instead of
+   squeezing them into three narrow columns */
+@media (max-width: 700px){
+  .section__head{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 /* ================================
    TERMS ACKNOWLEDGEMENT (ONCE)
 ================================ */
@@ -1108,7 +1122,7 @@ h1{
   /* Starfield image + soft readability layer */
   background-image:
     linear-gradient(180deg, rgba(5,6,11,.78), rgba(5,6,11,.88)),
-    url("../images/bg/starfield.png");
+    url("../images/bg/starfield.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

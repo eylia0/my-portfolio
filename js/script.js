@@ -119,6 +119,17 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem(KEY, "1");
     notice.classList.add("is-hidden");
   });
+
+  // Don't stack on top of the "Work in progress" popup:
+  // wait until that one is dismissed, then show this notice.
+  const wip = document.getElementById("wip");
+  const wipClose = document.getElementById("wipClose");
+  if (wip && wipClose && !wip.classList.contains("is-hidden")) {
+    notice.classList.add("is-hidden");
+    wipClose.addEventListener("click", () => {
+      notice.classList.remove("is-hidden");
+    });
+  }
 });
 /* =========================================================
   EARTHLIGHT HERO: crossfade + tilt
