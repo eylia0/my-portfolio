@@ -85,8 +85,9 @@ function init(host) {
   scene.add(coreLight, floorSpill);
 
   // ---------- Load the model ----------
-  const walls = [], woods = [], coppers = [];
-  let top = null;
+  const walls = [], woods = [], coppers = [], ropes = [];
+  const top = new THREE.Group();
+  const ropeMat = new THREE.MeshStandardMaterial({ color: 0xf2ece0, roughness: 0.95 });
   new GLTFLoader().load(modelUrl, (gltf) => {
     gltf.scene.traverse((o) => {
       if (!o.isMesh) return;
@@ -94,13 +95,15 @@ function init(host) {
       if (o.name.startsWith('wall_')) { addWallUVs(o.geometry); o.material = meshMat; o.castShadow = false; walls[+o.name.slice(5)] = o; }
       else if (o.name.startsWith('wood_')) { o.material = pine; woods[+o.name.slice(5)] = o; }
       else if (o.name.startsWith('copper_')) { o.material = copper; coppers[+o.name.slice(7)] = o; }
-      else if (o.name === 'top') { o.material = topMat; top = o; }
+      else if (o.name.startsWith('rope_')) { o.material = ropeMat; ropes[+o.name.slice(5)] = o; }
+      else if (o.name === 'top') { o.material = topMat; top.userData.plate = o; }
+      else if (o.name === 'top_wood') { o.material = pine; top.userData.wood = o; }
     });
     // each wall + its slabs move together; work out which way is "out" from its centre
     walls.forEach((w, i) => {
       const g = new THREE.Group();
       scene.add(g);
-      g.add(w); g.add(woods[i]); if (coppers[i]) g.add(coppers[i]);
+      g.add(w); g.add(woods[i]); if (coppers[i]) g.add(coppers[i]); if (ropes[i]) g.add(ropes[i]);
       const box = new THREE.Box3().setFromObject(w);
       const c = box.getCenter(new THREE.Vector3()); c.y = 0;
       g.userData.dir = c.lengthSq() > 1e-6 ? c.normalize() : new THREE.Vector3(1, 0, 0);
@@ -108,6 +111,7 @@ function init(host) {
       g.userData.lifts = Math.abs(g.userData.dir.x) > Math.abs(g.userData.dir.z);
       parts.push(g);
     });
+    top.add(top.userData.plate, top.userData.wood);
     scene.add(top);
     host.classList.add('is-ready');
     setStatus();
@@ -154,7 +158,7 @@ function init(host) {
     spark = Math.max(0, spark - dt * 2.2);
     copper.emissiveIntensity = spark * 2.5 + glow * 0.25;
     glow += (want - glow) * Math.min(1, dt * 2.5);
-    meshMat.emissiveIntensity = glow * 0.9;
+    meshMat.emissiveIntensity = glow * 2.2;
     topMat.emissiveIntensity = glow * 1.2;
     coreLight.intensity = glow * 4.5;
     floorSpill.intensity = glow * 3;
