@@ -1,6 +1,6 @@
 // Lumina — interactive 3D model built from the SolidWorks files.
-// Four curved acrylic walls slot together like a #, wrapped in 30 x 100 x 3 mm pine slabs,
-// with a 12 mm acrylic top. Take it apart and put it back; the light comes on only when it is whole.
+// Four curved mesh walls slot together like a #, faced with 30 x 100 x 3 mm pine slabs,
+// with a 12 mm acrylic top. The mesh lets it flex and roll up, and lets the light through. Take it apart and put it back; the light comes on only when it is whole.
 
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
@@ -59,8 +59,15 @@ function init(host) {
 
   // ---------- Materials ----------
   const pine = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.75 });
-  const acrylic = new THREE.MeshPhysicalMaterial({
-    color: 0xe9f2f6, roughness: 0.18, metalness: 0, transparent: true, opacity: 0.42,
+  // open-weave mesh: drawn once, repeated across each wall
+  const meshTex = meshTexture();
+  const meshMat = new THREE.MeshStandardMaterial({
+    color: 0x2a2a2e, roughness: 0.8, metalness: 0.1,
+    alphaMap: meshTex, alphaTest: 0.35, side: THREE.DoubleSide,
+    emissive: new THREE.Color(0xffb866), emissiveIntensity: 0
+  });
+  const topAcrylic = new THREE.MeshPhysicalMaterial({
+    color: 0xe9f2f6, roughness: 0.18, transparent: true, opacity: 0.5,
     clearcoat: 1, clearcoatRoughness: 0.1, side: THREE.DoubleSide,
     emissive: new THREE.Color(0xffb866), emissiveIntensity: 0
   });
@@ -68,8 +75,7 @@ function init(host) {
     color: 0xb8734a, metalness: 1, roughness: 0.32,
     emissive: new THREE.Color(0xffd29a), emissiveIntensity: 0
   });
-  const topMat = acrylic.clone();
-  topMat.opacity = 0.5;
+  const topMat = topAcrylic;
 
   // inner glow: a warm light at the heart of the #, like the LEDs in the prototype
   const coreLight = new THREE.PointLight(0xffb35c, 0, 2.2, 1.4);
@@ -85,7 +91,7 @@ function init(host) {
     gltf.scene.traverse((o) => {
       if (!o.isMesh) return;
       o.castShadow = true; o.receiveShadow = true;
-      if (o.name.startsWith('wall_')) { o.material = acrylic; walls[+o.name.slice(5)] = o; }
+      if (o.name.startsWith('wall_')) { addWallUVs(o.geometry); o.material = meshMat; o.castShadow = false; walls[+o.name.slice(5)] = o; }
       else if (o.name.startsWith('wood_')) { o.material = pine; woods[+o.name.slice(5)] = o; }
       else if (o.name.startsWith('copper_')) { o.material = copper; coppers[+o.name.slice(7)] = o; }
       else if (o.name === 'top') { o.material = topMat; top = o; }
@@ -148,7 +154,7 @@ function init(host) {
     spark = Math.max(0, spark - dt * 2.2);
     copper.emissiveIntensity = spark * 2.5 + glow * 0.25;
     glow += (want - glow) * Math.min(1, dt * 2.5);
-    acrylic.emissiveIntensity = glow * 1.6;
+    meshMat.emissiveIntensity = glow * 0.9;
     topMat.emissiveIntensity = glow * 1.2;
     coreLight.intensity = glow * 4.5;
     floorSpill.intensity = glow * 3;
@@ -187,4 +193,31 @@ function init(host) {
   new ResizeObserver(resize).observe(wrap);
   resize();
   setStatus();
+}
+
+// Woven mesh: dark strands with square openings, as an alpha map (white = solid strand).
+function meshTexture() {
+  const c = document.createElement('canvas'); c.width = c.height = 64;
+  const g = c.getContext('2d');
+  g.fillStyle = '#000'; g.fillRect(0, 0, 64, 64);
+  g.fillStyle = '#fff';
+  g.fillRect(0, 0, 64, 14); g.fillRect(0, 0, 14, 64);   // one horizontal + one vertical strand per tile
+  const t = new THREE.CanvasTexture(c);
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.anisotropy = 4;
+  return t;
+}
+
+// The exported walls have no UVs, so map the mesh pattern along the wall and up its height.
+function addWallUVs(geo) {
+  geo.computeBoundingBox();
+  const b = geo.boundingBox, pos = geo.attributes.position;
+  const alongX = (b.max.x - b.min.x) > (b.max.z - b.min.z);
+  const cell = 0.008;                       // 8 mm mesh pitch
+  const uv = new Float32Array(pos.count * 2);
+  for (let i = 0; i < pos.count; i++) {
+    uv[i * 2] = (alongX ? pos.getX(i) : pos.getZ(i)) / cell;
+    uv[i * 2 + 1] = pos.getY(i) / cell;
+  }
+  geo.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
 }
