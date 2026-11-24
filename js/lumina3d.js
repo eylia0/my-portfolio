@@ -1,6 +1,6 @@
 // Lumina — interactive 3D model built from the SolidWorks files.
 // Four curved mesh walls slot together like a #, faced with 30 x 100 x 3 mm pine slabs,
-// with a 12 mm acrylic top. The mesh lets it flex and roll up, and lets the light through. Take it apart and put it back; the light comes on only when it is whole.
+// with a slab-covered wavy top. The mesh lets it flex and roll up, and lets the light through. Take it apart and put it back; the light comes on only when it is whole.
 
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
