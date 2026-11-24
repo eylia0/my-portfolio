@@ -1347,6 +1347,8 @@ img, video{ max-width: 100%; }
 .proof li{ display:flex; flex-direction:column; gap:4px; }
 .proof strong{ font-size:16px; color:#fff; letter-spacing:-.01em; }
 .proof span{ font-size:13px; color: var(--muted); }
+.proof a{ display:flex; flex-direction:column; gap:4px; color:inherit; text-decoration:none; border-radius:10px; }
+.proof a:hover strong, .proof a:focus-visible strong{ color: var(--accent, #a7f0ff); }
 
 /* ---------- Section heads ---------- */
 .sx__head{ margin-bottom:28px; max-width:720px; }
