@@ -131,17 +131,26 @@
       transition: background .3s, color .3s;
     }
     .panel:hover .open{ background: var(--grad); color:#14141a; border-color: transparent; }
-    /* confidential panels: no photos, so the glow becomes the picture */
-    .panel--private{ background: radial-gradient(120% 120% at 20% 0%, #1a1520, #0d0e14 60%); }
-    .panel--private::before{ background: none; }
-    .panel--private .blob{ position:absolute; border-radius:50%; filter: blur(70px); z-index:-1; }
-    .panel--private .b1{ width: 55%; aspect-ratio:1; right: -6%; top: -18%; background: radial-gradient(circle, rgba(var(--ember),.55), transparent 65%); }
-    .panel--private .b2{ width: 45%; aspect-ratio:1; right: 18%; bottom: -30%; background: radial-gradient(circle, rgba(167,240,255,.32), transparent 65%); }
-    @media (prefers-reduced-motion: no-preference){
-      .panel--private .b1{ animation: drift 16s ease-in-out infinite alternate; }
-      .panel--private .b2{ animation: drift 19s ease-in-out infinite alternate-reverse; }
-      @keyframes drift{ to{ transform: translate(-12%, 10%) scale(1.12); } }
+    /* closed projects: diagonal stripes, cyan and red glow, centred pill and name */
+    .panel--private{
+      display:flex; align-items:center; justify-content:center; text-align:center;
+      background:
+        radial-gradient(55% 60% at 30% 28%, rgba(167,240,255,.16), transparent 62%),
+        radial-gradient(55% 60% at 80% 82%, rgba(255,45,85,.20), transparent 62%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,.035) 0 14px, transparent 14px 28px),
+        #0e0f15;
     }
+    .panel--private::before{ background:none; }
+    .lock{ display:flex; flex-direction:column; align-items:center; gap: 18px; padding: 0 24px; }
+    .nda__lock{
+      font-size: 13px; letter-spacing:.22em; font-weight:700; text-transform:uppercase; color: var(--cyan);
+      border:1px solid rgba(167,240,255,.45); padding: 7px 16px; border-radius:999px;
+    }
+    .nda__name{
+      font-size: clamp(56px, 8.4vw, 124px); font-weight:750; letter-spacing:-.04em; line-height:1;
+      color: rgba(255,255,255,.94);
+    }
+    .lock p{ color: var(--muted); max-width: 40ch; font-size: clamp(15px, 1.3vw, 18px); }
 
     /* ---------- About ---------- */
     .about{ padding: 140px 0 120px; position:relative; }
@@ -215,7 +224,7 @@
         <p class="status">Industrial designer, Sydney. Open to work.</p>
         <h1 class="display">Thought is<br /><span class="grad" data-t="friction.">friction.</span></h1>
         <div class="hero__foot">
-          <p>If you have to stop and work out how to use something, the design has failed. I aim for simple, and keep going until the product disappears into the task, all the way to a working prototype.</p>
+          <p>If you have to stop and work out how to use something, the design has failed. I aim for simple, and keep refining until the product disappears into the task. Then I build it as a working prototype.</p>
           <div class="hero__cta">
             <a class="btn" href="#work">See the work</a>
             <a class="btn btn--ghost" href="docs/Eylia_Wahbeh_Resume.pdf" target="_blank" rel="noopener noreferrer" onclick="gtag('event','resume_open',{event_category:'engagement'});">Résumé</a>
@@ -227,8 +236,8 @@
     <section class="work" id="work" aria-labelledby="work-h">
       <div class="wrap">
         <div class="work__head">
-          <h2 class="display" id="work-h">Built, not<br />just rendered.</h2>
-          <p>Six projects. Every one went past the screen and into real materials.</p>
+          <h2 class="display" id="work-h">Made to<br />be used.</h2>
+          <p>Six projects, from research and concept through to working prototypes.</p>
         </div>
 
         <div class="stack">
@@ -243,10 +252,9 @@
           </a>
 
           <a class="panel panel--private" style="--i:1" href="projects/sidekick.html">
-            <i class="blob b1" aria-hidden="true"></i><i class="blob b2" aria-hidden="true"></i>
-            <span class="tag">Confidential</span>
-            <div class="panel__text">
-              <h3 class="display grad">SideKick</h3>
+            <div class="lock">
+              <span class="nda__lock">Confidential</span>
+              <h3 class="nda__name">SideKick</h3>
               <p>A wearable for tradies, built as a working 1:1 prototype. Shown in person while the IP is sorted.</p>
             </div>
             <span class="open">Read the overview</span>
@@ -257,17 +265,17 @@
             <span class="tag">Leatherwork</span>
             <div class="panel__text">
               <h3 class="display grad">Rolo’no</h3>
-              <p>A leather tool apron that rolls up and goes with you.</p>
+              <p>A leather tool apron that rolls up into its own pouch, for creatives on the move.</p>
             </div>
             <span class="open">Open project</span>
           </a>
 
           <a class="panel" style="--i:3" href="projects/iss-wellness.html">
-            <img src="images/iss/iss-christmas.jpg" alt="Earthlight projection inside an ISS module" loading="lazy" />
+            <img src="images/iss/iss-christmas.jpg" alt="Earthlight concept inside an ISS module" loading="lazy" />
             <span class="tag">Space</span>
             <div class="panel__text">
               <h3 class="display grad">Earthlight</h3>
-              <p>A wellbeing system that brings a piece of home to astronauts.</p>
+              <p>A wellbeing system that brings a piece of Earth to astronauts on long missions.</p>
             </div>
             <span class="open">Open project</span>
           </a>
@@ -277,16 +285,15 @@
             <span class="tag">Sustainability</span>
             <div class="panel__text">
               <h3 class="display grad">Circular</h3>
-              <p>Everyday products redesigned to be repaired and reused.</p>
+              <p>A street light and a torch, redesigned to be fixed and reused instead of thrown away.</p>
             </div>
             <span class="open">Open project</span>
           </a>
 
           <a class="panel panel--private" style="--i:5" href="projects/resmed.html">
-            <i class="blob b1" aria-hidden="true"></i><i class="blob b2" aria-hidden="true"></i>
-            <span class="tag">NDA</span>
-            <div class="panel__text">
-              <h3 class="display grad">ResMed</h3>
+            <div class="lock">
+              <span class="nda__lock">NDA</span>
+              <h3 class="nda__name">ResMed</h3>
               <p>A comfort-led medical concept for a global med-tech company. Walkthrough on request.</p>
             </div>
             <span class="open">Read the overview</span>
