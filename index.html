@@ -9,317 +9,340 @@
     gtag('js', new Date());
     gtag('config', 'G-JT1C0092MH');
   </script>
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eylia Wahbeh — Industrial Designer, Sydney</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Eylia Wahbeh is a Sydney industrial designer who takes ideas from user research to a working prototype: the form, the electronics, the firmware and the app." />
-
-  <!-- Link previews (LinkedIn, Slack, email) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Eylia Wahbeh — Industrial Designer" />
   <meta property="og:description" content="Thought is friction. Industrial design, taken all the way to a working prototype." />
   <meta property="og:url" content="https://eylia0.github.io/my-portfolio/" />
-  <meta property="og:image" content="https://eylia0.github.io/my-portfolio/images/lumina/hero.jpg" />
+  <meta property="og:image" content="https://eylia0.github.io/my-portfolio/images/lumina/cover-lit.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#0b0b0f" />
+  <title>Eylia Wahbeh — Industrial Designer, Sydney</title>
+  <link rel="preload" href="fonts/archivo-wdth.woff2" as="font" type="font/woff2" crossorigin />
+  <style>
+    @font-face{
+      font-family:"Archivo"; src:url("fonts/archivo-wdth.woff2") format("woff2-variations");
+      font-weight:100 900; font-stretch:62% 125%; font-display:swap;
+    }
+    /* Same palette as the original site: night, warm red glow, cyan-to-pink gradient */
+    :root{
+      --bg:#0b0b0f; --bg2:#0f1016; --card:#12131a;
+      --text:#f4f4f7; --muted:#b6b7c2; --line:rgba(255,255,255,.10);
+      --cyan:#a7f0ff; --pink:#ff8fab; --ember:255,45,85;
+      --grad: linear-gradient(90deg, var(--cyan), var(--pink));
+      --wrap: min(1240px, calc(100% - 48px));
+    }
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+    body{
+      background: linear-gradient(180deg, var(--bg), var(--bg2));
+      color: var(--text);
+      font: 400 16px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    }
+    a{ color:inherit; text-decoration:none; }
+    a:focus-visible{ outline:2px solid var(--cyan); outline-offset:4px; border-radius:6px; }
+    img{ display:block; max-width:100%; }
+    .wrap{ width: var(--wrap); margin: 0 auto; }
+    .display{ font-family:"Archivo", ui-sans-serif, system-ui, sans-serif; font-weight:800; font-stretch:112%; letter-spacing:-.045em; }
+    .grad{ background: var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
 
-  <link rel="stylesheet" href="css/style.css?v=20261127a" />
+    /* ---------- Top bar ---------- */
+    .bar{
+      position: fixed; top:0; left:0; right:0; z-index:50;
+      display:flex; justify-content:space-between; align-items:center;
+      padding: 18px max(24px, calc((100% - 1240px) / 2));
+      background: linear-gradient(180deg, rgba(11,11,15,.85), rgba(11,11,15,0));
+      backdrop-filter: blur(6px);
+    }
+    .bar__name{ font-weight:650; display:flex; align-items:center; gap:10px; }
+    .bar__name i{ width:10px; height:10px; border-radius:50%; background: var(--grad); box-shadow: 0 0 14px rgba(var(--ember),.8); }
+    .bar nav{ display:flex; gap:26px; font-size:15px; color: var(--muted); }
+    .bar nav a:hover{ color: var(--text); }
+
+    /* ---------- Hero: the warm glow follows you ---------- */
+    .hero{ position:relative; min-height: 100svh; display:flex; align-items:center; overflow:hidden; isolation:isolate; }
+    .orb{ position:absolute; border-radius:50%; filter: blur(90px); z-index:-1; will-change: transform; }
+    .orb--a{ width: 62vmax; height: 62vmax; left:-18vmax; top:-26vmax; background: radial-gradient(circle, rgba(var(--ember),.55), transparent 65%); }
+    .orb--b{ width: 46vmax; height: 46vmax; right:-16vmax; top: 18vh; background: radial-gradient(circle, rgba(255,143,171,.30), transparent 65%); }
+    .orb--c{ width: 36vmax; height: 36vmax; left: 30vw; bottom:-22vmax; background: radial-gradient(circle, rgba(167,240,255,.20), transparent 65%); }
+    .hero h1{
+      font-size: clamp(50px, 12.6vw, 196px); line-height: .9;
+    }
+    .hero h1 .grad{ display:inline-block; position:relative; }
+    .hero h1 .grad::after{ /* soft neon halo behind the gradient word */
+      content: attr(data-t); position:absolute; inset:0; z-index:-1;
+      background: var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;
+      filter: blur(28px); opacity:.7;
+    }
+    .hero__foot{
+      display:grid; grid-template-columns: minmax(0, 520px) auto; justify-content:space-between; align-items:end; gap: 32px;
+      margin-top: clamp(28px, 4vw, 56px);
+    }
+    .hero__foot p{ color: var(--muted); font-size: 18px; line-height:1.55; }
+    .hero__cta{ display:flex; gap:12px; flex-wrap:wrap; }
+    .btn{
+      display:inline-flex; align-items:center; padding: 13px 22px; border-radius:999px; font-weight:650; font-size:15px;
+      background: var(--grad); color:#14141a;
+      box-shadow: 0 10px 40px rgba(var(--ember),.35);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .btn:hover{ transform: translateY(-2px); box-shadow: 0 14px 50px rgba(var(--ember),.5); }
+    .btn--ghost{ background: rgba(255,255,255,.06); color: var(--text); border:1px solid var(--line); box-shadow:none; }
+    .btn--ghost:hover{ box-shadow:none; border-color: rgba(255,255,255,.25); }
+    .status{ display:inline-flex; align-items:center; gap:8px; font-size:14px; color: var(--muted); margin-bottom: 22px; }
+    .status::before{ content:""; width:8px; height:8px; border-radius:50%; background:#3ddc84; box-shadow:0 0 12px #3ddc84; }
+
+    /* ---------- Work: six panels, same size, stacking as you scroll ---------- */
+    .work{ padding: 40px 0 120px; }
+    .work__head{ display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom: 40px; }
+    .work__head h2{ font-size: clamp(34px, 4.6vw, 64px); line-height:1; }
+    .work__head p{ color: var(--muted); max-width: 34ch; }
+    .stack{ display:grid; gap: 28px; }
+    .panel{
+      position: sticky; top: calc(88px + var(--i) * 14px);
+      height: min(78svh, 720px); border-radius: 28px; overflow:hidden; isolation:isolate;
+      border:1px solid var(--line); background: var(--card);
+      box-shadow: 0 -20px 60px rgba(0,0,0,.45);
+      display:block;
+    }
+    .panel img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+    .panel:hover img{ transform: scale(1.04); }
+    .panel::before{
+      content:""; position:absolute; inset:0; z-index:-1;
+      background:
+        linear-gradient(90deg, rgba(11,11,15,.82) 0%, rgba(11,11,15,.35) 42%, transparent 70%),
+        linear-gradient(0deg, rgba(11,11,15,.7), transparent 45%);
+    }
+    .panel__text{ position:absolute; left: clamp(24px, 4vw, 56px); bottom: clamp(24px, 4vw, 52px); max-width: 520px; }
+    .panel h3{ font-size: clamp(52px, 8.4vw, 132px); line-height:.9; }
+    .panel p{ margin-top: 14px; font-size: clamp(16px, 1.4vw, 19px); color: rgba(244,244,247,.82); max-width: 36ch; }
+    .panel .tag{
+      position:absolute; top: clamp(20px, 3vw, 32px); left: clamp(24px, 4vw, 56px);
+      font-size:13px; font-weight:600; padding: 7px 13px; border-radius:999px;
+      background: rgba(11,11,15,.45); border:1px solid rgba(255,255,255,.16); backdrop-filter: blur(10px);
+    }
+    .panel .open{
+      position:absolute; right: clamp(24px, 4vw, 56px); bottom: clamp(24px, 4vw, 52px);
+      font-weight:650; font-size:15px; padding: 12px 20px; border-radius:999px;
+      background: rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); backdrop-filter: blur(10px);
+      transition: background .3s, color .3s;
+    }
+    .panel:hover .open{ background: var(--grad); color:#14141a; border-color: transparent; }
+    /* confidential panels: no photos, so the glow becomes the picture */
+    .panel--private{ background: radial-gradient(120% 120% at 20% 0%, #1a1520, #0d0e14 60%); }
+    .panel--private::before{ background: none; }
+    .panel--private .blob{ position:absolute; border-radius:50%; filter: blur(70px); z-index:-1; }
+    .panel--private .b1{ width: 55%; aspect-ratio:1; right: -6%; top: -18%; background: radial-gradient(circle, rgba(var(--ember),.55), transparent 65%); }
+    .panel--private .b2{ width: 45%; aspect-ratio:1; right: 18%; bottom: -30%; background: radial-gradient(circle, rgba(167,240,255,.32), transparent 65%); }
+    @media (prefers-reduced-motion: no-preference){
+      .panel--private .b1{ animation: drift 16s ease-in-out infinite alternate; }
+      .panel--private .b2{ animation: drift 19s ease-in-out infinite alternate-reverse; }
+      @keyframes drift{ to{ transform: translate(-12%, 10%) scale(1.12); } }
+    }
+
+    /* ---------- About ---------- */
+    .about{ padding: 140px 0 120px; position:relative; }
+    .about__grid{ display:grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 6vw, 96px); align-items:center; }
+    .portrait{ position:relative; border-radius: 28px; overflow:hidden; aspect-ratio: 4/5; border:1px solid var(--line); }
+    .portrait img{ width:100%; height:100%; object-fit:cover; }
+    .portrait::after{ content:""; position:absolute; inset:0; background: linear-gradient(0deg, rgba(var(--ember),.22), transparent 50%); mix-blend-mode: screen; }
+    .portrait-wrap{ position:relative; }
+    .portrait-wrap::before{
+      content:""; position:absolute; inset: 8% -8% -8% 8%; border-radius: 40px; z-index:-1;
+      background: radial-gradient(circle at 70% 80%, rgba(var(--ember),.5), transparent 60%); filter: blur(50px);
+    }
+    .about h2{ font-size: clamp(40px, 5.4vw, 76px); line-height:.95; }
+    .about .big{ margin-top: 26px; font-size: clamp(20px, 2vw, 26px); line-height:1.4; color: var(--text); max-width: 32ch; }
+    .about .small{ margin-top: 18px; color: var(--muted); max-width: 52ch; }
+    .kit{ margin-top: 40px; display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px; border-top:1px solid var(--line); padding-top: 26px; }
+    .kit h3{ font-size: 15px; margin-bottom: 8px; }
+    .kit p{ font-size: 14px; color: var(--muted); line-height:1.55; }
+
+    /* ---------- Contact: the email is the headline ---------- */
+    .contact{ position:relative; padding: 140px 0 60px; overflow:hidden; isolation:isolate; text-align:left; }
+    .contact::before{
+      content:""; position:absolute; left:50%; top:40%; width: 90vmax; height: 50vmax; transform: translate(-50%,-50%); z-index:-1;
+      background: radial-gradient(closest-side, rgba(var(--ember),.35), transparent); filter: blur(30px);
+    }
+    .contact .lead{ font-size: clamp(20px, 2vw, 26px); color: var(--muted); max-width: 34ch; }
+    .mail{ display:inline-block; margin-top: 18px; font-size: clamp(26px, 5.6vw, 86px); line-height:1.05; white-space: nowrap; }
+    @media (max-width: 560px){ .mail{ white-space: normal; overflow-wrap: anywhere; } }
+    .mail span{ background-size: 200% 100%; transition: background-position .8s; }
+    .mail:hover span{ background-position: 100% 0; }
+    .links{ display:flex; gap: 12px; flex-wrap:wrap; margin-top: 40px; }
+    footer{ display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; color: var(--muted); font-size:14px; padding: 60px 0 40px; border-top:1px solid var(--line); margin-top: 100px; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px){
+      .hero__foot, .about__grid{ grid-template-columns: 1fr; }
+      .kit{ grid-template-columns: 1fr; }
+      .work__head{ flex-direction:column; align-items:start; }
+      .panel{ height: 70svh; }
+      .panel .open{ display:none; }
+    }
+    @media (max-width: 560px){
+      .bar nav{ gap:16px; font-size:14px; }
+      .panel{ top: calc(72px + var(--i) * 10px); border-radius: 22px; }
+      .panel::before{ background: linear-gradient(0deg, rgba(11,11,15,.85), transparent 60%); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+      .panel{ position: relative; top:auto; }
+    }
+  </style>
 </head>
+<body>
 
-<body class="home">
-
-  <a class="skip" href="#main">Skip to content</a>
-
-  <!-- HEADER -->
-  <header class="topbar">
-    <div class="wrap topbar__inner">
-      <a class="brand" href="index.html" aria-label="Home">
-        <span class="brand__mark"></span>
-        <span class="brand__name">Eylia Wahbeh</span>
-      </a>
-
-      <nav class="nav" aria-label="Primary">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#capabilities" class="nav__opt">Skills</a>
-        <a href="#contact" class="pill">Contact</a>
-      </nav>
-    </div>
+  <header class="bar">
+    <a class="bar__name" href="#top"><i aria-hidden="true"></i>Eylia Wahbeh</a>
+    <nav aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <main id="main">
+  <main id="top">
 
-    <!-- HERO -->
-    <section class="hx">
-      <div class="wrap hx__inner">
-        <div class="hx__copy">
-          <p class="hx__status"><span class="hx__dot" aria-hidden="true"></span>Open to industrial design roles · Sydney</p>
-
-          <h1 class="hx__title">
-            Thought is<br />
-            <span class="hx__accent">friction.</span>
-          </h1>
-
-          <p class="hx__lede">
-            If you have to stop and work out how to use something, the design has failed. I aim for simple, and keep going until the product disappears into the task. I’m an industrial designer who takes it all the way to a working prototype: the form, the electronics, the firmware and the app.
-          </p>
-
-          <div class="hx__cta">
-            <a class="btn" href="#work">See my work</a>
-            <a class="btn btn--ghost"
-               href="docs/Eylia_Wahbeh_Resume.pdf"
-               target="_blank" rel="noopener noreferrer"
-               onclick="gtag('event','resume_open',{event_category:'engagement',event_label:'hero'});">
-              Résumé ↗
-            </a>
-          </div>
-        </div>
-
-        <!-- Work mosaic: shows real projects immediately -->
-        <div class="hx__mosaic" aria-label="Project highlights">
-          <a class="tile tile--tall" href="projects/lumina.html">
-            <img src="images/lumina/cover-lit.jpg" alt="Lumina stool glowing through the gaps in its interlocking panels" />
-            <span class="tile__label">Lumina · Interactive light stool</span>
-          </a>
-          <a class="tile" href="projects/iss-wellness.html">
-            <img src="images/iss/iss-christmas.jpg" alt="Earthlight projection system inside an ISS module" />
-            <span class="tile__label">Earthlight · Astronaut wellbeing</span>
-          </a>
-          <a class="tile" href="projects/rolono.html">
-            <img src="images/rolono/cover-dark.jpg" alt="Rolo’no leather tool apron laid fully open" />
-            <span class="tile__label">Rolo’no · Leather tool apron</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Proof strip -->
+    <section class="hero" aria-label="Introduction">
+      <div class="orb orb--a" aria-hidden="true"></div>
+      <div class="orb orb--b" aria-hidden="true"></div>
+      <div class="orb orb--c" aria-hidden="true"></div>
       <div class="wrap">
-        <ul class="proof" aria-label="Highlights">
-          <li><a href="projects/lumina.html"><strong>Sydney VIVID</strong><span>Lumina, a stool that only lights up when it’s whole</span></a></li>
-          <li><a href="projects/resmed.html"><strong>ResMed</strong><span>Industry medical brief (NDA)</span></a></li>
-          <li><a href="projects/sidekick.html"><strong>1:1 working prototype</strong><span>Honours thesis: wearable for construction</span></a></li>
-          <li><a href="#about"><strong>On the tools before design</strong><span>Electrical, construction and IT</span></a></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- SELECTED WORK -->
-    <section id="work" class="section">
-      <div class="wrap">
-        <div class="sx__head">
-          <p class="eyebrow">Selected work</p>
-          <h2 class="sx__title">Projects that went past the render.</h2>
-        </div>
-
-        <!-- WORK GRID: every project gets the same space -->
-        <div class="wgrid">
-
-          <a class="wcard" href="projects/lumina.html"
-             onclick="gtag('event','case_study_open',{event_category:'engagement',event_label:'Lumina'});">
-            <img src="images/lumina/cover-lit.jpg" alt="Lumina stool glowing through the gaps in its interlocking panels" style="object-position: 50% 30%;" loading="lazy" />
-            <div class="wcard__cap">
-              <h3>Lumina</h3>
-              <p>A stool that only lights up when it’s whole</p>
-            </div>
-          </a>
-
-          <a class="wcard wcard--private" href="projects/sidekick.html"
-             onclick="gtag('event','case_study_open',{event_category:'engagement',event_label:'SideKick'});">
-            <div class="wcard__glow" aria-hidden="true"></div>
-            <span class="wcard__chip">Confidential</span>
-            <span class="wcard__word" aria-hidden="true">SideKick</span>
-            <div class="wcard__cap">
-              <h3>SideKick</h3>
-              <p>Wearable for tradies, built as a working prototype</p>
-            </div>
-          </a>
-
-          <a class="wcard" href="projects/rolono.html"
-             onclick="gtag('event','case_study_open',{event_category:'engagement',event_label:'Rolono'});">
-            <img src="images/rolono/hero.jpg" alt="Rolo’no leather apron with tools" style="object-position: 28% 70%;" loading="lazy" />
-            <div class="wcard__cap">
-              <h3>Rolo’no</h3>
-              <p>Leather tool apron that rolls up</p>
-            </div>
-          </a>
-
-          <a class="wcard" href="projects/iss-wellness.html"
-             onclick="gtag('event','case_study_open',{event_category:'engagement',event_label:'Earthlight'});">
-            <img src="images/iss/iss-christmas.jpg" alt="Earthlight projection inside an ISS module" style="object-position: 55% 50%;" loading="lazy" />
-            <div class="wcard__cap">
-              <h3>Earthlight</h3>
-              <p>Wellbeing system for astronauts</p>
-            </div>
-          </a>
-
-          <a class="wcard wcard--light" href="projects/circular.html"
-             onclick="gtag('event','case_study_open',{event_category:'engagement',event_label:'Circular'});">
-            <img src="images/circular/streetlight-dwg-1.png" alt="Streetlight redesign drawing" style="object-position: 68% 50%;" loading="lazy" />
-            <div class="wcard__cap">
-              <h3>Circular</h3>
-              <p>Redesigns for repair and reuse</p>
-            </div>
-          </a>
-
-          <a class="wcard wcard--private" href="projects/resmed.html"
-             onclick="gtag('event','case_study_open',{event_category:'engagement',event_label:'ResMed'});">
-            <div class="wcard__glow" aria-hidden="true"></div>
-            <span class="wcard__chip">NDA</span>
-            <span class="wcard__word" aria-hidden="true">ResMed</span>
-            <div class="wcard__cap">
-              <h3>ResMed</h3>
-              <p>Comfort-led medical concept</p>
-            </div>
-          </a>
-
-        </div>
-
-        <div class="more">
-          <a class="more__link" href="projects.html">All projects <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <div class="wrap about">
-        <div class="about__left">
-          <p class="eyebrow">About</p>
-          <h2 class="sx__title">Hi, I’m Eylia.</h2>
-          <p class="about__lede">
-            I’m an industrial designer based in Sydney, finishing Industrial Design (Honours) at Western Sydney University.
-            I didn’t start in design. I studied electrical engineering, worked in construction, and did IT support and project work.
-            That’s why I map the full user journey, every step, workaround and frustration, and design each interaction around the user, not the other way round.
-          </p>
-          <p class="about__lede">
-            My style is simple and functional, with one moment that stands out. I do my best work where the sketchbook, CAD and the workshop meet.
-          </p>
-
-          <div class="about__grid">
-            <div class="mini"><h3>Background</h3><p>Electrical engineering study, construction and fit-out, and IT support. I know how things get built, wired and fixed.</p></div>
-            <div class="mini"><h3>Looking for</h3><p>Industrial and product design roles in Sydney, taking products from idea to working prototype.</p></div>
-          </div>
-        </div>
-
-        <div class="about__right">
-          <div class="portrait">
-            <div class="portrait__frame">
-              <div class="portrait__fill"></div>
-              <div class="portrait__badge">Open to work</div>
-            </div>
+        <p class="status">Industrial designer, Sydney. Open to work.</p>
+        <h1 class="display">Thought is<br /><span class="grad" data-t="friction.">friction.</span></h1>
+        <div class="hero__foot">
+          <p>If you have to stop and work out how to use something, the design has failed. I aim for simple, and keep going until the product disappears into the task, all the way to a working prototype.</p>
+          <div class="hero__cta">
+            <a class="btn" href="#work">See the work</a>
+            <a class="btn btn--ghost" href="docs/Eylia_Wahbeh_Resume.pdf" target="_blank" rel="noopener noreferrer" onclick="gtag('event','resume_open',{event_category:'engagement'});">Résumé</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CAPABILITIES -->
-    <section id="capabilities" class="section section--soft">
+    <section class="work" id="work" aria-labelledby="work-h">
       <div class="wrap">
-        <div class="sx__head">
-          <p class="eyebrow">What I bring</p>
-          <h2 class="sx__title">A designer with an engineer’s toolkit.</h2>
-          <p class="sx__lede">Most design grads hand over a render. I hand over something that works, and I can tell you how it’s wired, built and fixed.</p>
+        <div class="work__head">
+          <h2 class="display" id="work-h">Built, not<br />just rendered.</h2>
+          <p>Six projects. Every one went past the screen and into real materials.</p>
         </div>
 
-        <div class="caps">
-          <article class="cap">
-            <span class="cap__num">01</span>
-            <h3>Design</h3>
-            <p>User research, ergonomics, sketching, form development and telling the story visually.</p>
-            <ul class="tags">
-              <li>SolidWorks</li><li>Blender</li><li>Adobe Suite</li><li>Research through design</li><li>Journey mapping</li><li>AS 1100 drawings</li>
-            </ul>
-          </article>
+        <div class="stack">
+          <a class="panel" style="--i:0" href="projects/lumina.html">
+            <img src="images/lumina/cover-lit.jpg" alt="Lumina stool glowing through the gaps in its interlocking panels" style="object-position: 50% 32%;" />
+            <span class="tag">Sydney VIVID</span>
+            <div class="panel__text">
+              <h3 class="display grad">Lumina</h3>
+              <p>A stool strangers build together. It only lights up when it’s whole.</p>
+            </div>
+            <span class="open">Open project</span>
+          </a>
 
-          <article class="cap">
-            <span class="cap__num">02</span>
-            <h3>Build</h3>
-            <p>I studied electrical engineering and worked on building sites. I prototype in real materials, and write the firmware and app that make them work.</p>
-            <ul class="tags">
-              <li>Electronics</li><li>Arduino firmware</li><li>Sensors</li><li>Silicone casting</li><li>3D printing</li><li>Soft goods</li><li>Laser cutting</li><li>Leatherwork</li>
-            </ul>
-          </article>
+          <a class="panel panel--private" style="--i:1" href="projects/sidekick.html">
+            <i class="blob b1" aria-hidden="true"></i><i class="blob b2" aria-hidden="true"></i>
+            <span class="tag">Confidential</span>
+            <div class="panel__text">
+              <h3 class="display grad">SideKick</h3>
+              <p>A wearable for tradies, built as a working 1:1 prototype. Shown in person while the IP is sorted.</p>
+            </div>
+            <span class="open">Read the overview</span>
+          </a>
 
-          <article class="cap">
-            <span class="cap__num">03</span>
-            <h3>Deliver</h3>
-            <p>Years in IT support and customer-facing work. I keep projects moving and explain decisions clearly to engineers, clients and the people who use the product.</p>
-            <ul class="tags">
-              <li>Project management</li><li>Stakeholder comms</li><li>Web apps</li><li>IT systems</li><li>Client-facing</li>
-            </ul>
-          </article>
+          <a class="panel" style="--i:2" href="projects/rolono.html">
+            <img src="images/rolono/hero.jpg" alt="Rolo’no leather apron with tools" style="object-position: 40% 70%;" loading="lazy" />
+            <span class="tag">Leatherwork</span>
+            <div class="panel__text">
+              <h3 class="display grad">Rolo’no</h3>
+              <p>A leather tool apron that rolls up and goes with you.</p>
+            </div>
+            <span class="open">Open project</span>
+          </a>
+
+          <a class="panel" style="--i:3" href="projects/iss-wellness.html">
+            <img src="images/iss/iss-christmas.jpg" alt="Earthlight projection inside an ISS module" loading="lazy" />
+            <span class="tag">Space</span>
+            <div class="panel__text">
+              <h3 class="display grad">Earthlight</h3>
+              <p>A wellbeing system that brings a piece of home to astronauts.</p>
+            </div>
+            <span class="open">Open project</span>
+          </a>
+
+          <a class="panel" style="--i:4" href="projects/circular.html">
+            <img src="images/circular/streetlight-dwg-1.png" alt="Streetlight redesign drawing" style="object-position: 70% 50%;" loading="lazy" />
+            <span class="tag">Sustainability</span>
+            <div class="panel__text">
+              <h3 class="display grad">Circular</h3>
+              <p>Everyday products redesigned to be repaired and reused.</p>
+            </div>
+            <span class="open">Open project</span>
+          </a>
+
+          <a class="panel panel--private" style="--i:5" href="projects/resmed.html">
+            <i class="blob b1" aria-hidden="true"></i><i class="blob b2" aria-hidden="true"></i>
+            <span class="tag">NDA</span>
+            <div class="panel__text">
+              <h3 class="display grad">ResMed</h3>
+              <p>A comfort-led medical concept for a global med-tech company. Walkthrough on request.</p>
+            </div>
+            <span class="open">Read the overview</span>
+          </a>
         </div>
-
-        <!-- PROCESS -->
-        <ol class="process" aria-label="How I work">
-          <li><span>Research</span>Users, context, constraints</li>
-          <li><span>Concept</span>Sketch, iterate, test with people</li>
-          <li><span>Engineer</span>CAD, materials, assembly logic</li>
-          <li><span>Prototype</span>Build, test, refine</li>
-        </ol>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <div class="wrap">
-        <div class="contactCard">
-          <div class="contactCard__row">
-            <div class="contactCard__left">
-              <span class="contactCard__eyebrow">Contact</span>
-              <h2 class="contactCard__headline">
-                <span>Hiring a designer who can</span>
-                <span class="accent">also build the prototype?</span>
-              </h2>
-              <p class="contactCard__sub">For product work that needs to go from a napkin sketch to a working reality, please don’t hesitate to reach out.</p>
-            </div>
-
-            <nav class="contactPills contactPills--right" aria-label="Contact links">
-              <a class="chipLink" href="https://www.linkedin.com/in/eylia-wahbeh-6539a7212" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-              <a class="chipLink" href="docs/Eylia_Wahbeh_Resume.pdf" target="_blank" rel="noopener noreferrer"
-                 onclick="gtag('event','resume_open',{event_category:'engagement',event_label:'contact'});">Résumé</a>
-              <a class="chipLink" href="https://www.instagram.com/eylia_id/" target="_blank" rel="noopener noreferrer">Instagram</a>
-            </nav>
-          </div>
-
-          <div class="contactCard__actions">
-            <a class="cta cta--primary" href="mailto:eyliawahbeh@gmail.com?subject=Industrial%20design%20opportunity">Email me</a>
-            <div class="emailBox">
-              <a class="emailBox__link" href="mailto:eyliawahbeh@gmail.com">eyliawahbeh@gmail.com</a>
-              <div class="emailBox__note">Sydney, NSW · Open to work</div>
-            </div>
-          </div>
-
-          <div class="contactCard__shine" aria-hidden="true"></div>
+    <section class="about" id="about" aria-labelledby="about-h">
+      <div class="wrap about__grid">
+        <div class="portrait-wrap">
+          <div class="portrait"><img src="images/about/eylia-panel.jpg" alt="Eylia Wahbeh speaking at a panel" loading="lazy" /></div>
         </div>
+        <div>
+          <h2 class="display" id="about-h">Hi, I’m <span class="grad">Eylia.</span></h2>
+          <p class="big">I map the full user journey, every step, workaround and frustration, and design each interaction around the user.</p>
+          <p class="small">I didn’t start in design. I studied electrical engineering, worked in construction, and did IT support. Now I’m finishing Industrial Design (Honours) at Western Sydney University, and I do my best work where the sketchbook, CAD and the workshop meet.</p>
+          <div class="kit">
+            <div><h3>Design</h3><p>Research, journey mapping, sketching, SolidWorks, Blender, AS 1100 drawings</p></div>
+            <div><h3>Build</h3><p>Electronics, Arduino firmware, sensors, silicone casting, 3D printing, leatherwork</p></div>
+            <div><h3>Deliver</h3><p>Project management, client-facing work, clear communication with engineers</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-h">
+      <div class="wrap">
+        <p class="lead" id="contact-h">Need a designer who can also build the prototype?</p>
+        <a class="mail display" href="mailto:eyliawahbeh@gmail.com?subject=Industrial%20design%20opportunity"><span class="grad">eyliawahbeh@gmail.com</span></a>
+        <div class="links">
+          <a class="btn btn--ghost" href="https://www.linkedin.com/in/eylia-wahbeh-6539a7212" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn btn--ghost" href="docs/Eylia_Wahbeh_Resume.pdf" target="_blank" rel="noopener noreferrer" onclick="gtag('event','resume_open',{event_category:'engagement'});">Résumé</a>
+          <a class="btn btn--ghost" href="https://www.instagram.com/eylia_id/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+        <footer>
+          <span>Eylia Wahbeh, industrial designer</span>
+          <span>Sydney, NSW</span>
+        </footer>
       </div>
     </section>
 
   </main>
 
-  <footer class="footer">
-    <div class="wrap footer__inner">
-      <p class="footer__ip">© <span id="year"></span> Eylia Wahbeh. All work shown is my intellectual property.</p>
-      <div class="footer__links">
-        <a href="projects.html">Projects</a>
-        <a href="terms.html">Terms</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/script.js"></script>
   <script>
-    // Warm glow that follows the cursor across the project cards
+    // The hero glow drifts toward the cursor: warmth that responds to you
     (function(){
       if (!matchMedia('(pointer:fine)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      document.querySelectorAll('.wcard').forEach(function(c){
-        c.addEventListener('pointermove', function(e){
-          var r = c.getBoundingClientRect();
-          c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-          c.style.setProperty('--my', (e.clientY - r.top) + 'px');
-        });
-      });
+      var orbs = [].slice.call(document.querySelectorAll('.orb')), k = [0.06, -0.04, 0.03];
+      var tx = 0, ty = 0, x = 0, y = 0;
+      addEventListener('pointermove', function(e){ tx = e.clientX - innerWidth/2; ty = e.clientY - innerHeight/2; }, {passive:true});
+      (function loop(){
+        x += (tx - x) * 0.06; y += (ty - y) * 0.06;
+        orbs.forEach(function(o, i){ o.style.transform = 'translate(' + (x*k[i]*4) + 'px,' + (y*k[i]*4) + 'px)'; });
+        requestAnimationFrame(loop);
+      })();
     })();
   </script>
 </body>
