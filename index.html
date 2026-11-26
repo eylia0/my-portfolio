@@ -24,7 +24,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#0b0b0f" />
 
-  <link rel="stylesheet" href="css/style.css?v=20261124c" />
+  <link rel="stylesheet" href="css/style.css?v=20261127a" />
 </head>
 
 <body class="home">
@@ -112,90 +112,64 @@
           <h2 class="sx__title">Projects that went past the render.</h2>
         </div>
 
-        <!-- FEATURED -->
-        <a class="feat" href="projects/lumina.html"
-           onclick="gtag('event','case_study_open',{event_category:'engagement',event_label:'Lumina'});">
-          <div class="feat__media">
-            <img src="images/lumina/cover-lit.jpg" alt="Lumina stool glowing through the gaps in its interlocking panels" style="object-position: 50% 35%;" loading="lazy" />
-            <span class="feat__badge">Featured case study</span>
-          </div>
-          <div class="feat__body">
-            <p class="eyebrow">Interaction · Lighting · Prototyping</p>
-            <h3>Lumina — Seat of Collaboration</h3>
-            <p class="feat__desc">
-              A stool for Sydney VIVID that strangers have to build together.
-              It comes apart into four mesh walls and a top. Put it back together right and it lights up.
-            </p>
-            <dl class="facts">
-              <div><dt>Challenge</dt><dd>Get strangers in a public space to work together, with no instructions</dd></div>
-              <div><dt>Solution</dt><dd>Walls that slot together with no fasteners. Copper contacts turn the light on only when it’s whole</dd></div>
-              <div><dt>Delivered</dt><dd>Material and light tests, assembly logic and a working prototype that lights up</dd></div>
-            </dl>
-            <span class="go">View case study and 3D model <span aria-hidden="true">→</span></span>
-          </div>
-        </a>
+        <!-- WORK GRID: every project gets the same space -->
+        <div class="wgrid">
 
-        <!-- GRID -->
-        <div class="pgrid">
+          <a class="wcard" href="projects/lumina.html"
+             onclick="gtag('event','case_study_open',{event_category:'engagement',event_label:'Lumina'});">
+            <img src="images/lumina/cover-lit.jpg" alt="Lumina stool glowing through the gaps in its interlocking panels" style="object-position: 50% 30%;" loading="lazy" />
+            <div class="wcard__cap">
+              <h3>Lumina</h3>
+              <p>A stool that only lights up when it’s whole</p>
+            </div>
+          </a>
 
-          <a class="pcard pcard--nda pcard--wide" href="projects/sidekick.html"
+          <a class="wcard wcard--private" href="projects/sidekick.html"
              onclick="gtag('event','case_study_open',{event_category:'engagement',event_label:'SideKick'});">
-            <div class="pcard__media pcard__media--nda">
-              <span class="nda__lock" aria-hidden="true">CONFIDENTIAL</span>
-              <span class="nda__name">SideKick</span>
-            </div>
-            <div class="pcard__body">
-              <p class="eyebrow">Honours thesis · Wearable · Construction</p>
-              <h3>SideKick — From Resistance to Adoption</h3>
-              <p>A wearable for tradies, designed around why they push back on new tech on site. I did the research, soft goods, cast silicone, electronics, firmware and app, and built it into a working 1:1 prototype. Shown privately while I sort out the IP.</p>
-              <span class="go">View overview <span aria-hidden="true">→</span></span>
+            <div class="wcard__glow" aria-hidden="true"></div>
+            <span class="wcard__chip">Confidential</span>
+            <span class="wcard__word" aria-hidden="true">SideKick</span>
+            <div class="wcard__cap">
+              <h3>SideKick</h3>
+              <p>Wearable for tradies, built as a working prototype</p>
             </div>
           </a>
 
-          <a class="pcard" href="projects/rolono.html"
+          <a class="wcard" href="projects/rolono.html"
              onclick="gtag('event','case_study_open',{event_category:'engagement',event_label:'Rolono'});">
-            <div class="pcard__media"><img src="images/rolono/hero.jpg" alt="Rolo’no apron with tools" loading="lazy" /></div>
-            <div class="pcard__body">
-              <p class="eyebrow">Product · Soft goods · Making</p>
-              <h3>Rolo’no Apron</h3>
-              <p>A leather tool apron that rolls from a flat work surface into a compact pouch in one motion. Worked out with paper patterns, laser cutting and wet-moulding tests, then built by hand.</p>
-              <span class="go">View case study <span aria-hidden="true">→</span></span>
+            <img src="images/rolono/hero.jpg" alt="Rolo’no leather apron with tools" style="object-position: 28% 70%;" loading="lazy" />
+            <div class="wcard__cap">
+              <h3>Rolo’no</h3>
+              <p>Leather tool apron that rolls up</p>
             </div>
           </a>
 
-          <a class="pcard" href="projects/iss-wellness.html"
+          <a class="wcard" href="projects/iss-wellness.html"
              onclick="gtag('event','case_study_open',{event_category:'engagement',event_label:'Earthlight'});">
-            <div class="pcard__media"><img src="images/iss/earthlight-hero.jpg" alt="Earthlight concept inside the ISS" loading="lazy" /></div>
-            <div class="pcard__body">
-              <p class="eyebrow">System design · Research</p>
-              <h3>Earthlight — Astronaut Wellbeing</h3>
-              <p>A sensory system that helps astronauts on long ISS missions deal with homesickness, monotony and mealtime fatigue. Includes journey maps and a personalised control system.</p>
-              <span class="go">View case study <span aria-hidden="true">→</span></span>
+            <img src="images/iss/iss-christmas.jpg" alt="Earthlight projection inside an ISS module" style="object-position: 55% 50%;" loading="lazy" />
+            <div class="wcard__cap">
+              <h3>Earthlight</h3>
+              <p>Wellbeing system for astronauts</p>
             </div>
           </a>
 
-          <a class="pcard" href="projects/circular.html"
+          <a class="wcard wcard--light" href="projects/circular.html"
              onclick="gtag('event','case_study_open',{event_category:'engagement',event_label:'Circular'});">
-            <div class="pcard__media"><img src="images/circular/circular-economy.jpg" alt="Circular economy redesign sketches" loading="lazy" /></div>
-            <div class="pcard__body">
-              <p class="eyebrow">Circular design · SDG 12</p>
-              <h3>Circular Economy Redesigns</h3>
-              <p>A street light and a Dolphin torch, redesigned so they get fixed instead of thrown out: easy access, fewer parts, and parts that separate at end of life.</p>
-              <span class="go">View case study <span aria-hidden="true">→</span></span>
+            <img src="images/circular/streetlight-dwg-1.png" alt="Streetlight redesign drawing" style="object-position: 68% 50%;" loading="lazy" />
+            <div class="wcard__cap">
+              <h3>Circular</h3>
+              <p>Redesigns for repair and reuse</p>
             </div>
           </a>
 
-          <a class="pcard pcard--nda" href="projects/resmed.html"
+          <a class="wcard wcard--private" href="projects/resmed.html"
              onclick="gtag('event','case_study_open',{event_category:'engagement',event_label:'ResMed'});">
-            <div class="pcard__media pcard__media--nda">
-              <span class="nda__lock" aria-hidden="true">NDA</span>
-              <span class="nda__name">ResMed</span>
-            </div>
-            <div class="pcard__body">
-              <p class="eyebrow">Medical · Ergonomics · Industry</p>
-              <h3>ResMed — Medical Concept</h3>
-              <p>Comfort-led form and skin-contact material work for a global medical tech company. Happy to walk hiring teams through it privately.</p>
-              <span class="go">View overview <span aria-hidden="true">→</span></span>
+            <div class="wcard__glow" aria-hidden="true"></div>
+            <span class="wcard__chip">NDA</span>
+            <span class="wcard__word" aria-hidden="true">ResMed</span>
+            <div class="wcard__cap">
+              <h3>ResMed</h3>
+              <p>Comfort-led medical concept</p>
             </div>
           </a>
 
@@ -335,5 +309,18 @@
   </footer>
 
   <script src="js/script.js"></script>
+  <script>
+    // Warm glow that follows the cursor across the project cards
+    (function(){
+      if (!matchMedia('(pointer:fine)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      document.querySelectorAll('.wcard').forEach(function(c){
+        c.addEventListener('pointermove', function(e){
+          var r = c.getBoundingClientRect();
+          c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+          c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

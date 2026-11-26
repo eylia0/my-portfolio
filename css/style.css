@@ -1541,3 +1541,80 @@ ol.process span::before{ content: counter(step, decimal-leading-zero) "  "; colo
   .l3d__canvas{ height: 420px; }
   .l3d__status{ flex-basis:100%; margin:4px 0 0; }
 }
+
+/* =========================================================
+  WORK GRID (Nov 2026): six projects, equal space, photo-led
+========================================================= */
+.wgrid{
+  display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+}
+.wcard{
+  --mx: 50%; --my: 50%;
+  position:relative; display:block; aspect-ratio: 4 / 5; overflow:hidden;
+  border-radius: var(--radius); background: var(--card);
+  border:1px solid var(--line);
+  isolation:isolate;
+  transition: transform .45s cubic-bezier(.2,.7,.2,1), border-color .3s, box-shadow .45s;
+}
+.wcard img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2;
+  transition: transform .9s cubic-bezier(.2,.7,.2,1), filter .5s;
+  filter: saturate(1.05);
+}
+/* bottom scrim so captions read on any photo */
+.wcard::before{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background: linear-gradient(180deg, transparent 45%, rgba(11,11,15,.55) 72%, rgba(11,11,15,.92) 100%);
+}
+/* cursor-following warm glow */
+.wcard::after{
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:0; transition: opacity .35s;
+  background: radial-gradient(380px circle at var(--mx) var(--my), rgba(255,45,85,.28), rgba(167,240,255,.10) 45%, transparent 70%);
+  mix-blend-mode: screen;
+}
+.wcard:hover{ transform: translateY(-6px); border-color: rgba(255,143,171,.45);
+  box-shadow: 0 30px 70px rgba(0,0,0,.55), 0 0 0 1px rgba(167,240,255,.12), 0 18px 60px rgba(255,45,85,.18); }
+.wcard:hover::after{ opacity:1; }
+.wcard:hover img{ transform: scale(1.06); }
+.wcard:focus-visible{ outline: 2px solid var(--accent); outline-offset: 4px; }
+
+.wcard__cap{ position:absolute; left:22px; right:22px; bottom:20px; }
+.wcard__cap h3{ font-size: 24px; color: var(--text); letter-spacing:-.03em; }
+.wcard__cap p{ margin-top:4px; font-size: 14px; color: rgba(244,244,247,.75); line-height:1.4; }
+.wcard:hover .wcard__cap h3{
+  background: linear-gradient(90deg, var(--accent), #ff8fab);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+
+/* light drawing: keep the caption readable */
+.wcard--light::before{ background: linear-gradient(180deg, transparent 40%, rgba(11,11,15,.65) 70%, rgba(11,11,15,.95) 100%); }
+
+/* confidential projects: glowing dark panel with the name set large */
+.wcard--private{ background: linear-gradient(160deg, #15161f, #0d0e14); }
+.wcard__glow{
+  position:absolute; inset:-20%; z-index:-1; filter: blur(40px); opacity:.85;
+  background:
+    radial-gradient(40% 35% at 30% 30%, rgba(255,45,85,.45), transparent 70%),
+    radial-gradient(45% 40% at 75% 65%, rgba(167,240,255,.28), transparent 70%);
+}
+@media (prefers-reduced-motion: no-preference){
+  .wcard__glow{ animation: drift 14s ease-in-out infinite alternate; }
+  @keyframes drift{ to{ transform: translate(6%, -5%) rotate(8deg); } }
+}
+.wcard__word{
+  position:absolute; left:22px; right:22px; top:50%; transform: translateY(-62%);
+  font-size: clamp(36px, 4.4vw, 58px); font-weight:800; letter-spacing:-.045em; line-height:1;
+  background: linear-gradient(90deg, var(--accent), #ff8fab);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.wcard__chip{
+  position:absolute; top:18px; left:18px;
+  font-size:12px; font-weight:600; color: var(--text);
+  padding: 6px 11px; border-radius: 999px;
+  background: rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16);
+  backdrop-filter: blur(8px);
+}
+.wcard--private .wcard__cap h3{ display:none; }
+
+@media (max-width: 900px){ .wgrid{ grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px){ .wgrid{ grid-template-columns: 1fr; } .wcard{ aspect-ratio: 4 / 4.4; } }
