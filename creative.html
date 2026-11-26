@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Eylia Wahbeh — Industrial Designer, Sydney</title>
+  <link rel="preload" href="fonts/archivo-wdth.woff2" as="font" type="font/woff2" crossorigin />
+  <style>
+    @font-face{
+      font-family:"Archivo"; src:url("fonts/archivo-wdth.woff2") format("woff2-variations");
+      font-weight:100 900; font-stretch:62% 125%; font-style:normal; font-display:swap;
+    }
+    /* Drawing set: paper, graphite, construction lines, hi-vis orange */
+    :root{
+      --paper:#E6E8E3;
+      --sheet:#F7F7F3;
+      --graphite:#1E2125;
+      --line:#B6BAB3;
+      --faint:#CDD0CA;
+      --hivis:#FF6A13;
+      --muted:#5E625D;
+      --m: clamp(14px, 2.4vw, 32px);   /* frame margin */
+      --g: clamp(16px, 2.2vw, 28px);   /* grid gap */
+    }
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+    body{
+      background: var(--paper);
+      color: var(--graphite);
+      font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+      font-stretch: 100%;
+      font-size: 15px; line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a{ color:inherit; text-decoration:none; }
+    a:focus-visible{ outline: 2px solid var(--hivis); outline-offset: 3px; }
+    img{ display:block; max-width:100%; }
+
+    /* ---------- Drawing frame with zone references ---------- */
+    .frame{
+      position: fixed; inset: var(--m); pointer-events:none; z-index: 5;
+    }
+    .frame .e{ position:absolute; background: var(--graphite); }
+    .frame .t, .frame .b{ left:0; right:0; height:1.25px; }
+    .frame .l, .frame .r{ top:0; bottom:0; width:1.25px; }
+    .frame .t{ top:0; transform-origin:left; } .frame .b{ bottom:0; transform-origin:right; }
+    .frame .r{ right:0; transform-origin:top; } .frame .l{ left:0; transform-origin:bottom; }
+    .zones{
+      position: fixed; z-index:5; pointer-events:none;
+      font-size: 10px; color: var(--muted); font-stretch: 75%;
+      display:flex; justify-content:space-around;
+    }
+    .zones--top{ top: calc(var(--m) - 14px); left: var(--m); right: var(--m); }
+    .zones--side{
+      top: var(--m); bottom: var(--m); left: calc(var(--m) - 12px);
+      flex-direction: column; align-items:center;
+    }
+
+    .viewport{ position:fixed; inset: var(--m); overflow-y:auto; overscroll-behavior: contain; z-index:1; }
+    html, body{ height:100%; overflow:hidden; }
+    .page{ padding: clamp(24px, 3.4vw, 48px); }
+
+    /* ---------- Hero ---------- */
+    .hero{
+      display:grid; grid-template-columns: 1fr minmax(260px, 360px);
+      gap: var(--g); align-items:end;
+      min-height: calc(100svh - 2 * var(--m) - clamp(48px, 6.8vw, 96px));
+      padding-bottom: clamp(32px, 6vw, 72px);
+      border-bottom: 1px solid var(--graphite);
+    }
+    .hero h1{
+      font-weight: 850; font-stretch: 62%;
+      font-size: clamp(64px, 12.5vw, 250px);
+      line-height: .86; letter-spacing: -.02em;
+      text-transform: uppercase;
+    }
+    .hero h1 .l2{ display:block; padding-left: .55em; }
+    .lede{ max-width: 46ch; margin-top: clamp(20px, 3vw, 36px); font-size: 17px; color: var(--muted); }
+
+    /* Title block: used for the hero and for every sheet */
+    .tb{ display:grid; border:1px solid var(--graphite); background: var(--sheet); }
+    .tb > div{ padding: 8px 12px; border-top:1px solid var(--graphite); }
+    .tb > div:first-child{ border-top:0; }
+    .tb small{ display:block; font-size: 11px; color: var(--muted); font-stretch: 80%; }
+    .tb strong{ font-weight: 600; }
+    .tb .big{ font-size: 22px; font-weight: 750; font-stretch: 75%; line-height:1.1; }
+    .tb .row{ display:grid; grid-template-columns: 1fr 1fr; padding:0; }
+    .tb .row > div{ padding: 8px 12px; }
+    .tb .row > div + div{ border-left:1px solid var(--graphite); }
+    .status{ display:inline-flex; align-items:center; gap:8px; }
+    .status::before{ content:""; width:8px; height:8px; border-radius:50%; background: var(--hivis); }
+
+    /* ---------- Sheets: every project gets the same footprint ---------- */
+    .set-head{
+      display:flex; justify-content:space-between; align-items:baseline; gap:16px;
+      padding: clamp(40px, 6vw, 72px) 0 18px;
+    }
+    .set-head h2{ font-size: 15px; font-weight: 600; }
+    .set-head p{ color: var(--muted); font-size: 13px; }
+
+    .set{ display:grid; grid-template-columns: repeat(2, 1fr); gap: var(--g); }
+    .sheet{
+      display:flex; flex-direction:column;
+      background: var(--sheet); border: 1px solid var(--graphite);
+    }
+    .sheet__draw{
+      position:relative; aspect-ratio: 1.414 / 1;    /* A-series sheet proportion */
+      overflow:hidden; border-bottom: 1px solid var(--graphite); background: var(--graphite);
+    }
+    .sheet__draw img{ width:100%; height:100%; object-fit:cover; transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+    .sheet:hover .sheet__draw img{ transform: scale(1.035); }
+
+    /* Callout: a dimension-style leader to one short note */
+    .callout{
+      position:absolute; left: var(--x); top: var(--y);
+      display:flex; align-items:center; pointer-events:none;
+    }
+    .callout::before{
+      content:""; width:11px; height:11px; border-radius:50%;
+      border:2px solid var(--hivis); background: transparent; flex:none;
+      transform: translate(-50%, 0);
+    }
+    .callout i{ display:block; width: clamp(28px, 5vw, 64px); height:1.5px; background: var(--hivis); margin-left:-5px; }
+    .callout span{
+      background: var(--hivis); color: #1A1A1A;
+      font-size: 12px; font-weight: 600; line-height:1.25;
+      padding: 6px 9px; max-width: 22ch;
+    }
+    .callout--left{ flex-direction: row-reverse; }
+    .callout--left::before{ transform: translate(50%, 0); }
+    .callout--left i{ margin-left:0; margin-right:-5px; }
+
+    /* Withheld sheets use section hatching */
+    .hatch{
+      position:absolute; inset:0; display:grid; place-items:center;
+      background:
+        repeating-linear-gradient(45deg, transparent 0 9px, rgba(30,33,37,.55) 9px 10px),
+        var(--sheet);
+    }
+    .hatch p{
+      background: var(--sheet); border:1px solid var(--graphite);
+      padding: 14px 18px; text-align:center; max-width: 30ch;
+    }
+    .hatch b{ display:block; font-size: clamp(26px, 3.4vw, 44px); font-weight:800; font-stretch: 62%; text-transform:uppercase; line-height:1; margin-bottom:6px; }
+    .hatch span{ font-size: 13px; color: var(--muted); }
+
+    .sheet .tb{ border:0; grid-template-columns: 1.3fr 1fr 64px; }
+    .sheet .tb > div{ border-top:0; }
+    .sheet .tb > div + div{ border-left:1px solid var(--graphite); }
+    .sheet .tb .no{ text-align:center; }
+    .sheet .tb .no strong{ font-size: 18px; font-stretch: 75%; }
+    .sheet:hover .tb .big{ color: var(--hivis); }
+
+    /* ---------- Notes + contact ---------- */
+    .notes{
+      display:grid; grid-template-columns: 1fr minmax(260px, 360px); gap: var(--g);
+      padding-top: clamp(64px, 10vw, 140px);
+      align-items:end;
+    }
+    .notes h2{ font-size: 15px; font-weight:600; margin-bottom: 14px; }
+    .notes blockquote{
+      font-size: clamp(24px, 3.1vw, 44px); line-height: 1.15; letter-spacing: -.012em;
+      font-weight: 500; font-stretch: 88%; max-width: 26ch;
+    }
+    .tb a{ text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+    .tb a:hover{ text-decoration-color: var(--hivis); }
+    .tb .email{ font-size: 18px; font-weight:650; }
+
+    /* ---------- CAD crosshair (fine pointers only) ---------- */
+    .xh{ position:fixed; pointer-events:none; z-index:4; background: var(--hivis); opacity:0; transition: opacity .2s; }
+    .xh--v{ top:0; bottom:0; width:1px; }
+    .xh--h{ left:0; right:0; height:1px; }
+    .coords{
+      position:fixed; z-index:6; pointer-events:none;
+      right: calc(var(--m) + 10px); top: calc(var(--m) + 8px);
+      font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums;
+      font-stretch: 80%;
+    }
+    body.cad .xh{ opacity:.35; }
+    @media (pointer:fine){ body.cad, body.cad a{ cursor: crosshair; } }
+
+    /* ---------- One orchestrated moment: the frame draws itself ---------- */
+    @media (prefers-reduced-motion: no-preference){
+      .frame .t, .frame .b{ transform: scaleX(0); animation: dx .55s cubic-bezier(.6,0,.2,1) forwards; }
+      .frame .r, .frame .l{ transform: scaleY(0); animation: dy .45s cubic-bezier(.6,0,.2,1) forwards; }
+      .frame .t{ animation-delay:.1s; } .frame .r{ animation-delay:.6s; } .frame .b{ animation-delay:1s; } .frame .l{ animation-delay:1.5s; }
+      @keyframes dx{ to{ transform: scaleX(1); } } @keyframes dy{ to{ transform: scaleY(1); } }
+      .hero h1, .hero .lede, .hero .tb{ opacity:0; animation: in .7s ease .9s forwards; }
+      .hero .tb{ animation-delay: 1.35s; }
+      @keyframes in{ to{ opacity:1; } }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .sheet__draw img{ transition:none; }
+      .xh, .coords{ display:none; }
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px){
+      .hero, .notes{ grid-template-columns: 1fr; }
+      .hero{ min-height: auto; padding-top: 24px; }
+      .set{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px){
+      html, body{ height:auto; overflow:visible; }
+      .viewport{ position:static; overflow:visible; }
+      .frame{ display:none; }
+      .page{ padding: 24px 18px 40px; }
+      .zones{ display:none; }
+      .sheet .tb{ grid-template-columns: 1fr 1fr; }
+      .sheet .tb .no{ display:none; }
+      .callout span{ font-size: 11px; max-width: 18ch; }
+      .xh, .coords{ display:none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Drawing border -->
+  <div class="frame" aria-hidden="true"><i class="e t"></i><i class="e r"></i><i class="e b"></i><i class="e l"></i></div>
+  <div class="zones zones--top" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
+  <div class="zones zones--side" aria-hidden="true"><span>A</span><span>B</span><span>C</span><span>D</span></div>
+  <div class="xh xh--v" aria-hidden="true"></div>
+  <div class="xh xh--h" aria-hidden="true"></div>
+  <div class="coords" aria-hidden="true"></div>
+
+  <div class="viewport" id="vp"><div class="page">
+
+    <header class="hero">
+      <div>
+        <h1>I design products <span class="l2">and build them.</span></h1>
+        <p class="lede">From user research to a working prototype: the form, the electronics, the firmware and the app. I came from electrical, construction and IT, so I design for how things really get made, wired, fixed and used.</p>
+      </div>
+
+      <div class="tb" aria-label="About Eylia">
+        <div><small>Drawn by</small><span class="big">Eylia Wahbeh</span></div>
+        <div class="row">
+          <div><small>Role</small><strong>Industrial designer</strong></div>
+          <div><small>Based</small><strong>Sydney</strong></div>
+        </div>
+        <div><small>Status</small><strong class="status">Open to work</strong></div>
+        <div class="row">
+          <div><a href="#contact">Contact</a></div>
+          <div><a href="docs/Eylia_Wahbeh_Resume.pdf" target="_blank" rel="noopener noreferrer">Résumé (PDF)</a></div>
+        </div>
+      </div>
+    </header>
+
+    <section id="work" aria-labelledby="work-h">
+      <div class="set-head">
+        <h2 id="work-h">Drawing set: six projects</h2>
+        <p>Every sheet opens the full project.</p>
+      </div>
+
+      <div class="set">
+
+        <a class="sheet" href="projects/lumina.html">
+          <div class="sheet__draw">
+            <img src="images/lumina/cover-lit.jpg" alt="Lumina stool glowing through the gaps in its interlocking panels" style="object-position: 50% 32%;" />
+            <div class="callout" style="--x:58%; --y:16%;"><i></i><span>Only lights up when it’s whole</span></div>
+          </div>
+          <div class="tb">
+            <div><small>Project</small><span class="big">Lumina</span></div>
+            <div><small>Brief</small><strong>Interlocking light stool, Sydney VIVID</strong></div>
+            <div class="no"><small>Sheet</small><strong>01</strong></div>
+          </div>
+        </a>
+
+        <a class="sheet" href="projects/sidekick.html">
+          <div class="sheet__draw">
+            <div class="hatch"><p><b>SideKick</b><span>Working 1:1 prototype. Shown in person while the IP is sorted.</span></p></div>
+          </div>
+          <div class="tb">
+            <div><small>Project</small><span class="big">SideKick</span></div>
+            <div><small>Brief</small><strong>Wearable for tradies, Honours thesis</strong></div>
+            <div class="no"><small>Sheet</small><strong>02</strong></div>
+          </div>
+        </a>
+
+        <a class="sheet" href="projects/rolono.html">
+          <div class="sheet__draw">
+            <img src="images/rolono/cover-dark.jpg" alt="Rolo’no leather tool apron laid fully open" loading="lazy" />
+            <div class="callout callout--left" style="--x:38%; --y:46%;"><i></i><span>Tool slots cut to fit</span></div>
+          </div>
+          <div class="tb">
+            <div><small>Project</small><span class="big">Rolo’no</span></div>
+            <div><small>Brief</small><strong>Leather tool apron that rolls up</strong></div>
+            <div class="no"><small>Sheet</small><strong>03</strong></div>
+          </div>
+        </a>
+
+        <a class="sheet" href="projects/iss-wellness.html">
+          <div class="sheet__draw">
+            <img src="images/iss/iss-christmas.jpg" alt="Earthlight projection inside an ISS module" loading="lazy" />
+            <div class="callout callout--left" style="--x:44%; --y:30%;"><i></i><span>Home, projected in orbit</span></div>
+          </div>
+          <div class="tb">
+            <div><small>Project</small><span class="big">Earthlight</span></div>
+            <div><small>Brief</small><strong>Wellbeing system for astronauts</strong></div>
+            <div class="no"><small>Sheet</small><strong>04</strong></div>
+          </div>
+        </a>
+
+        <a class="sheet" href="projects/circular.html">
+          <div class="sheet__draw">
+            <img src="images/circular/streetlight-dwg-1.png" alt="Streetlight redesign drawing" loading="lazy" />
+            <div class="callout" style="--x:62%; --y:58%;"><i></i><span>Panels clip off for repair</span></div>
+          </div>
+          <div class="tb">
+            <div><small>Project</small><span class="big">Circular</span></div>
+            <div><small>Brief</small><strong>Redesigns for repair and reuse</strong></div>
+            <div class="no"><small>Sheet</small><strong>05</strong></div>
+          </div>
+        </a>
+
+        <a class="sheet" href="projects/resmed.html">
+          <div class="sheet__draw">
+            <div class="hatch"><p><b>ResMed</b><span>Industry medical brief under NDA. Walkthrough on request.</span></p></div>
+          </div>
+          <div class="tb">
+            <div><small>Project</small><span class="big">ResMed</span></div>
+            <div><small>Brief</small><strong>Comfort-led medical concept</strong></div>
+            <div class="no"><small>Sheet</small><strong>06</strong></div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <section class="notes" id="contact" aria-labelledby="notes-h">
+      <div>
+        <h2 id="notes-h">General notes</h2>
+        <blockquote>I map the full user journey, every step, workaround and frustration, and design each interaction around the user, not the other way round.</blockquote>
+      </div>
+      <div class="tb">
+        <div><small>Email</small><a class="email" href="mailto:eyliawahbeh@gmail.com?subject=Industrial%20design%20opportunity">eyliawahbeh@gmail.com</a></div>
+        <div class="row">
+          <div><a href="https://www.linkedin.com/in/eylia-wahbeh-6539a7212" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+          <div><a href="docs/Eylia_Wahbeh_Resume.pdf" target="_blank" rel="noopener noreferrer">Résumé (PDF)</a></div>
+        </div>
+        <div><small>Looking for</small><strong>Industrial and product design work in Sydney</strong></div>
+      </div>
+    </section>
+
+  </div></div>
+
+  <script>
+    // CAD-style crosshair with a live coordinate readout (fine pointers, motion allowed)
+    (function(){
+      var fine = window.matchMedia('(pointer:fine)').matches;
+      var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(!fine || calm) return;
+      var vp = document.getElementById('vp'), v = document.querySelector('.xh--v'), h = document.querySelector('.xh--h'), c = document.querySelector('.coords');
+      document.body.classList.add('cad');
+      window.addEventListener('pointermove', function(e){
+        v.style.transform = 'translateX(' + e.clientX + 'px)';
+        h.style.transform = 'translateY(' + e.clientY + 'px)';
+        c.textContent = 'X ' + String(Math.round(e.clientX)).padStart(4,'0') + '   Y ' + String(Math.round(e.clientY + vp.scrollTop)).padStart(4,'0');
+      }, { passive:true });
+      document.addEventListener('pointerleave', function(){ document.body.classList.remove('cad'); });
+      document.addEventListener('pointerenter', function(){ document.body.classList.add('cad'); });
+    })();
+  </script>
+</body>
+</html>
